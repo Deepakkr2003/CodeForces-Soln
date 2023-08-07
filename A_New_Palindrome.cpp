@@ -24,13 +24,18 @@ int main()
         }
         else
         {
+            bool flag = true;
             for (auto it : m)
             {
                 if (it.second == 1)
                 {
                     cout << "NO" << endl;
+                    flag = false;
+                    break;
                 }
             }
+            if (flag)
+                cout << "YES" << endl;
         }
     }
 }

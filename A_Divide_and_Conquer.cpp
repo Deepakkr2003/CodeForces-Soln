@@ -22,17 +22,14 @@ int main()
         {
             for (int i = 0; i < n; i++)
             {
-                int temp = a[i];
+                long long int cnt = 0;
+                int temp = a[i] % 2;
                 do
                 {
-                    temp = temp / 2;
-                    q += temp;
-                    c++;
-                    if (c < p)
-                    {
-                        p = c;
-                    }
-                } while (q % 2 != 0);
+                    a[i] /= 2;
+                    cnt++;
+                } while (a[i] % 2 == temp);
+                p = min(p, cnt);
             }
             cout << p << endl;
         }
