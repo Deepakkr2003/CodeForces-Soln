@@ -6,40 +6,19 @@ int main()
     cin >> t;
     while (t--)
     {
-        int n, p = INT_MIN;
+        int n;
         cin >> n;
         int x = (n * (n - 1)) / 2;
         int b[x];
-        set<int> s;
         for (int i = 0; i < x; i++)
         {
             cin >> b[i];
-            if (b[i] > p)
-            {
-                p = b[i];
-            }
-            s.insert(b[i]);
         }
-        int l = s.size();
-        if (l == 1)
+        sort(b, b + x);
+        for (int i = 0; i < x; i += --n)
         {
-            while (n--)
-            {
-                for (auto it : s)
-                {
-                    cout << it << " ";
-                }
-            }
-            cout << endl;
+            cout << b[i] << " ";
         }
-        else
-        {
-
-            for (auto it : s)
-            {
-                cout << it << " ";
-            }
-            cout << p + 1 << endl;
+        cout << b[x - 1] << endl;
         }
-    }
 }

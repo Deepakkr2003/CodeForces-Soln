@@ -18,10 +18,9 @@ int main()
                 l = i;
                 m++;
             }
-            else
+            else if (r == -1)
             {
                 r = i;
-                break;
             }
         }
 
@@ -29,13 +28,9 @@ int main()
         {
             cout << -1 << endl;
         }
-        else if (l < r)
-        {
-            cout << r << endl;
-        }
         else
         {
-            cout << 0 << endl;
+            cout << r << endl;
         }
     }
 }
