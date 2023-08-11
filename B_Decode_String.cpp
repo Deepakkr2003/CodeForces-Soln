@@ -1,4 +1,5 @@
-#include <iostream>
+#include <bits/stdc++.h>
+#include <string>
 using namespace std;
 int main()
 {
@@ -8,21 +9,32 @@ int main()
     {
         int n;
         cin >> n;
-        int a[n];
+        string s;
+        cin >> s;
         string ans = "";
         char b;
-        for (int i = 0; i < n; i++)
+        for (int i = n - 1; i >= 0; i--)
         {
-            cin >> a[i];
-            // if (a[i + 2] == 0)
-            // {
-            //     b = 10 + a[i + 1] + 96;
-            //     ans += b;
-            // }
-            // else
-            b = a[i] + 96;
-            ans += b;
+            if (s[i] == '0')
+            {
+                string a = "";
+                a += s[i - 2];
+                a += s[i - 1];
+                int d = stoi(a);
+                b = 'a' + d - 1;
+                ans += b;
+                i = i - 2;
+            }
+            else
+            {
+                string a = "";
+                a += s[i];
+                int d = stoi(a);
+                b = 'a' + d - 1;
+                ans += b;
+            }
         }
+        reverse(ans.begin(), ans.end());
         cout << ans << endl;
     }
 }

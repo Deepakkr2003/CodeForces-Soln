@@ -9,7 +9,7 @@ int main()
         int n, p = INT_MIN;
         cin >> n;
         int x = (n * (n - 1)) / 2;
-        int b[n];
+        int b[x];
         set<int> s;
         for (int i = 0; i < x; i++)
         {

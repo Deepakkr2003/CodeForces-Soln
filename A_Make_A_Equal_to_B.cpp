@@ -26,22 +26,16 @@ int main()
             }
         }
         int x = 0;
+        int ans = abs(c - d) + 1;
         while (x < n)
         {
             if (a[x] != b[x])
             {
                 p++;
-                x++;
             }
+            x++;
         }
-        int m = abs(c - d);
-        if (p > 0)
-        {
-            cout << m + 1 << endl;
-        }
-        else
-        {
-            cout << m << endl;
-        }
+        ans = min(ans, p);
+        cout << ans << endl;
     }
 }
