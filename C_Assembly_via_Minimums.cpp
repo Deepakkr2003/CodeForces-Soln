@@ -2,9 +2,9 @@
 using namespace std;
 int main()
 {
-    int t;
-    cin >> t;
-    while (t--)
+    int ti;
+    cin >> ti;
+    while (ti--)
     {
         int n;
         cin >> n;
@@ -20,5 +20,5 @@ int main()
             cout << b[i] << " ";
         }
         cout << b[x - 1] << endl;
-        }
+    }
 }

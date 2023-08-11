@@ -10,7 +10,7 @@ int main()
         cin >> n;
         string s;
         cin >> s;
-        int r = -1, l = -1, m = 0, d = INT_MAX;
+        int r = -1, l = -1, m = 0;
         for (int i = 0; i < n; i++)
         {
             if (s[i] == 'L')
