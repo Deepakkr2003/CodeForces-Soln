@@ -5,15 +5,23 @@ int main()
     int t;
     cin>>t;
     while(t--){
-        int n,k,c=0,m=-1,d=0;
+        int n,k;
         cin>>n>>k;
         string s;
         cin>>s;
-        for(int i=1;i<n;i++){
-            if(s[i]=='B' && s[i-1]=='B'){
-                c++;
-
+        int cnt = 0;
+        int j = 0 , ans = 1e7;
+        for(int i=0 ; i<n ; i++)
+        {
+            //using sliding window
+            if(s[i] == 'W') cnt++;
+            if( i >= k -1)
+            {
+                ans = min(ans,cnt);
+                if(s[j] == 'W') cnt--;
+                j++;
             }
         }
+        cout << ans << endl;
     }
 }
