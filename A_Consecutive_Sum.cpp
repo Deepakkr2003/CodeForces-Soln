@@ -5,26 +5,17 @@ int main()
     int t;
     cin>>t;
     while(t--){
-        int n,k;
+        int n,k,x;
         cin>>n>>k;
         vector<int>v(n);
         for(int i=0;i<n;i++){
-            cin>>v[i];
+            cin>>x;
+            v[i%k]=max(v[i%k],x);
         }
-        for(int i=0;i<n;i++){
-            if(v[i]>v[i+(i*k)]){
-                swap(v[i],v[i+(i*k)]);
-            }
+        long long ans=0;
+        for(auto it:v){
+            ans+=it;
         }
-        int sum=0,m=-1;
-        for(int i=0;i<n;i++){
-            while(k--){
-                sum+=v[i];
-            }
-            if(sum>m){
-                m=sum;
-            }
-        }
-        cout<<m<<endl;
+        cout<<ans<<endl;
     }
 }
