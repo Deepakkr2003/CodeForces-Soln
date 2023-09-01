@@ -6,23 +6,37 @@ int main()
     int t;
     cin>>t;
     while(t--){
-        long long x,p;
+        long long x,y;
+        int p,q;
         cin>>x>>p;
-        long long y,q;
         cin>>y>>q;
-        long long c=pow(10,p);
-        long long d=pow(10,q);
-        long long m=x*(c);
-        long long n=y*(d);
-        cout<<c<<" "<<d<<endl;
-        // if(m>n){
-        //     cout<<">"<<endl;
-        // }
-        // else if(m<n){
-        //     cout<<"<"<<endl;
-        // }
-        // else{
-        //     cout<<"="<<endl;
-        // }
+        long long c;
+        if(p==2){
+            c=100;
+        }
+        else{
+            c=(pow(10,p));
+        }
+        
+        long long d;
+        if(q==2){
+            d=100;
+        }
+        else{
+            d=pow(10,q);
+        }
+        
+        long long m,n;
+        m=x*c;
+        n=y*d;
+        if(m>n){
+            cout<<">"<<endl;
+        }
+        else if(m<n){
+            cout<<"<"<<endl;
+        }
+        else{
+            cout<<"="<<endl;
+        }
     }
 }
