@@ -7,6 +7,8 @@ int main(){
         int n;
         cin>>n;
         vector<int>p,q;
+        p.push_back(0);
+        q.push_back(0);
         while(n--){
             int x,y;
             cin>>x>>y;
@@ -22,18 +24,7 @@ int main(){
         int l=p.size();
         int m=q.size();
         int sum=0;
-        if(l==1 && m==1){
-            sum=abs(p[0])+abs(q[0]);
-        }
-        else if(m==1){
-            sum=abs(p[0])+abs(p[l-1])+abs(q[0]);
-        }
-        else if(l==1){
-            sum=abs(p[0])+abs(q[0])+abs(q[m-1]);
-        }
-        else{
-            sum=abs(p[0])+abs(p[l-1])+abs(q[0])+abs(q[m-1]);
-        }
+        sum=abs(p[0])+abs(p[l-1])+abs(q[0])+abs(q[m-1]);
         cout<<(2*sum)<<endl;
     }
 }
