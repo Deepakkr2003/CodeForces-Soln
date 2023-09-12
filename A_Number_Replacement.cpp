@@ -8,17 +8,28 @@ int main()
         int n;
         cin>>n;
         vector<int>a(n);
-        map<int,int>m1;
-        map<char,int>m2;
+        map<int,char>m1;
         for(int i=0;i<n;i++){
             cin>>a[i];
-            m1[a[i]]++;
         }
         string s;
         cin>>s;
+        bool flag=false;
         for(int i=0;i<n;i++){
-            m2[s[i]]++;
+            if(m1.find(a[i])!=m1.end()){
+                if(m1[a[i]]!=s[i]){
+                    flag=true;
+                }
+            }
+            else{
+                m1.insert({a[i],s[i]});
+            }
         }
-        
+        if(flag){
+            cout<<"NO"<<endl;
+        }
+        else{
+            cout<<"YES"<<endl;
+        }
     }
 }
