@@ -12,31 +12,31 @@ int main()
         for(int i=0;i<n;i++){
             cin>>v[i];
         }
-        
+        int l=0;
         while(n--){
             int b;
-            cin>>b;
             string s;
-            cin>>s;
+            cin>>b>>s;
             for(int i=0;i<b;i++){
                 if(s[i]=='D'){
-                    if(v[i]==9){
-                        v[i]=0;
+                    if(v[l]==9){
+                        v[l]=0;
                     }
                     else{
-                        v[i]++;
+                        v[l]++;
                     }
                 }
                 if(s[i]=='U'){
-                    if(v[i]==0){
-                        v[i]=9;
+                    if(v[l]==0){
+                        v[l]=9;
                     }
                     else{
-                        v[i]--;
+                        v[l]--;
                     }
                 }
-                ans.push_back(v[i]);
             }
+            ans.push_back(v[l]);
+            l++;
         }
         for(auto it:ans){
             cout<<it<<" ";
