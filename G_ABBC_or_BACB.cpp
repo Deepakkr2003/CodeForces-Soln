@@ -63,10 +63,25 @@ ll mod_div(ll a, ll b, ll m) {a = a % m; b = b % m; return (mod_mul(a, mminvprim
 ll phin(ll n) {ll number = n; if (n % 2 == 0) {number /= 2; while (n % 2 == 0) n /= 2;} for (ll i = 3; i <= sqrt(n); i += 2) {if (n % i == 0) {while (n % i == 0)n /= i; number = (number / i * (i - 1));}} if (n > 1)number = (number / n * (n - 1)) ; return number;} //O(sqrt(N))
 /*--------------------------------------------------------------------------------------------------------------------------*/
 void solve(){
-    ll n;
-    cin>>n;
-    
-    
+    string s;
+    cin>>s;
+    ll n=s.size();
+    ll ans=0;
+    for(int i=0;i<n;i++){
+        if(s[i]=='A' && s[i+1]=='B'){
+            s[i]='B';
+            s[i+1]='C';
+            i++;
+            ans++;
+        }
+        if(s[i]=='B' && s[i+1]=='A'){
+            s[i]='C';
+            s[i+1]='B';
+            i++;
+            ans++;
+        } 
+    }
+    cout<<ans<<endl;
 }
 
 int main() {
@@ -78,4 +93,3 @@ int main() {
     }
     return 0;
 }
-

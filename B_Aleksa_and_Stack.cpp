@@ -65,8 +65,20 @@ ll phin(ll n) {ll number = n; if (n % 2 == 0) {number /= 2; while (n % 2 == 0) n
 void solve(){
     ll n;
     cin>>n;
-    
-    
+    vector<ll>v;
+    ll q=3;
+    for(int i=1;i<=n;i+=3){
+        
+        v.push_back(q);
+        v.push_back(q+1);
+        ll p=q+7;
+        v.push_back(p);
+        q+=9;
+    }
+    for(int i=0;i<n;i++){
+        cout<<v[i]<<" ";
+    }
+    cout<<endl;
 }
 
 int main() {
@@ -78,4 +90,3 @@ int main() {
     }
     return 0;
 }
-
