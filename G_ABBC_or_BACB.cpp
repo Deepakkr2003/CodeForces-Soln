@@ -75,10 +75,18 @@ void solve(){
             ans++;
         }
         if(s[i]=='B' && s[i+1]=='A'){
-            s[i]='C';
-            s[i+1]='B';
-            i++;
-            ans++;
+            if(s[i+2]=='A'){
+                i++;
+                ans++;
+
+            }
+            else{
+                s[i]='C';
+                s[i+1]='B';
+                i++;
+                ans++;
+            }
+            
         } 
     }
     cout<<ans<<endl;

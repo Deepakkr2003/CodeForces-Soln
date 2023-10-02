@@ -63,16 +63,31 @@ ll mod_div(ll a, ll b, ll m) {a = a % m; b = b % m; return (mod_mul(a, mminvprim
 ll phin(ll n) {ll number = n; if (n % 2 == 0) {number /= 2; while (n % 2 == 0) n /= 2;} for (ll i = 3; i <= sqrt(n); i += 2) {if (n % i == 0) {while (n % i == 0)n /= i; number = (number / i * (i - 1));}} if (n > 1)number = (number / n * (n - 1)) ; return number;} //O(sqrt(N))
 /*--------------------------------------------------------------------------------------------------------------------------*/
 void solve(){
-    ll n;
-    cin >> n;
-    ll num = 4;
-    ll sum = 3;
-    while(n % sum != 0)
+    ll n,m,k;
+    cin >> n >> m >> k;
+    vector<ll> a(n);
+    vector<ll> b(m);
+    fo(i,n) cin >> a[i];
+    fo(i,m) cin >> b[i];
+    sort(all(a));
+    sort(all(b));
+    if(k == 1)
     {
-        sum += num;
-        num *= 2;
-    }    
-    cout << n / sum << nline;    
+        a[0] = max(a[0],b[m-1]);
+    }
+    else
+    {
+        if(a[0] < b[m-1]){
+            swap(a[0],b[m-1]);
+            sort(all(a));
+            sort(all(b));
+        }
+        if(k % 2 == 0){
+            a[n-1] = min(b[0],a[n-1]);
+        }
+    }
+    ll sum = accumulate(all(a),0LL);
+    cout << sum << nline;
 }
 
 int main() {
@@ -84,4 +99,3 @@ int main() {
     }
     return 0;
 }
-

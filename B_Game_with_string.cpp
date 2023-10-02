@@ -87,8 +87,8 @@ void solve(){
 }
  
 int main() {
-    int testcases = 1;
-//    cin >> testcases;
+    int testcases=1 ;
+    // cin >> testcases;
     while(testcases--)
     {
         solve();
