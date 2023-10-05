@@ -65,14 +65,12 @@ ll phin(ll n) {ll number = n; if (n % 2 == 0) {number /= 2; while (n % 2 == 0) n
 void solve(){
     ll n,k,x;
     cin>>n>>k>>x;
-    ll p=(n*(n+1))/2;
-    if(x<=p && x>=5){
-        cout<<"YES"<<endl;
+    if(2*x>=k*(k+1) && 2*x<=n*(n+1)-(n-k)*(n-k+1)){ 
+			cout << "YES"<<endl;
+	}
+	else{
+         cout << "NO"<<endl;
     }
-    else{
-        cout<<"NO"<<endl;
-    }
-      
 }
 
 int main() {
