@@ -63,20 +63,15 @@ ll mod_div(ll a, ll b, ll m) {a = a % m; b = b % m; return (mod_mul(a, mminvprim
 ll phin(ll n) {ll number = n; if (n % 2 == 0) {number /= 2; while (n % 2 == 0) n /= 2;} for (ll i = 3; i <= sqrt(n); i += 2) {if (n % i == 0) {while (n % i == 0)n /= i; number = (number / i * (i - 1));}} if (n > 1)number = (number / n * (n - 1)) ; return number;} //O(sqrt(N))
 /*--------------------------------------------------------------------------------------------------------------------------*/
 void solve(){
-    ll n,k,a,b;
-    cin>>n>>k>>a>>b;
-    vector<ll>x(n+1),y(n+1);
-    fo(i,n){
-        cin>>x[i]>>y[i];
-    }
-    ll ans=llabs(x[a-1]-x[b-1])+llabs(y[a-1]-y[b-1]);
-    ll mins = LLONG_MAX / 2, mint = LLONG_MAX / 2;
-    for(int i=0;i<k;i++){
-        mins = min(mins, llabs(x[a-1] - x[i]) + llabs(y[a-1] - y[i]));
-		mint = min(mint, llabs(x[b-1] - x[i]) + llabs(y[b-1] - y[i]));
-    }
-    ans=min(ans,mins+mint);
-    cout<<ans<<endl;
+    ll a,b,c,d;
+    cin>>a>>b>>c>>d;
+    ll x = a * d, y = b * c;
+    if (x == y)
+        cout << 0<<endl;
+    else if (y != 0 && x % y == 0 || x != 0 && y % x == 0)
+        cout << 1<<endl;
+    else
+        cout << 2<<endl;
 }
 
 int main() {
@@ -88,4 +83,3 @@ int main() {
     }
     return 0;
 }
-
