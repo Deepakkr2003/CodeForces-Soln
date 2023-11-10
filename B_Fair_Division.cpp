@@ -1,5 +1,4 @@
 
-
 #pragma GCC optimize("O3,unroll-loops")
 
 #include<bits/stdc++.h>
@@ -64,39 +63,33 @@ ll mod_div(ll a, ll b, ll m) {a = a % m; b = b % m; return (mod_mul(a, mminvprim
 ll phin(ll n) {ll number = n; if (n % 2 == 0) {number /= 2; while (n % 2 == 0) n /= 2;} for (ll i = 3; i <= sqrt(n); i += 2) {if (n % i == 0) {while (n % i == 0)n /= i; number = (number / i * (i - 1));}} if (n > 1)number = (number / n * (n - 1)) ; return number;} //O(sqrt(N))
 /*--------------------------------------------------------------------------------------------------------------------------*/
 void solve(){
-    int n;
+    ll n,o=0,t=0,s=0,u=0,d=0;
     cin>>n;
-    int a[n];
-    for(int i=0;i<n;i++)
-    {
-      cin>>a[i];
-    }
-    int minimum = INT_MAX, minPos = 0;
-    int maximum = 0, maxPos = 0;
-    for (int i = 0; i < n; i++)
-    {
-        if(a[i] > maximum){
-            maximum = a[i];
-            maxPos = i; 
+    vector<ll>v(n);
+    fo(i,n){
+        cin>>v[i];
+        if(v[i]==1){
+            o++;
+            s+=v[i];
         }
-        if(a[i] <= minimum){
-            minimum = a[i]; 
-            minPos = i; 
+        if(v[i]==2){
+            t++;
+            u+=v[i];
         }
+        d+=v[i];
     }
-    int ans;
-    if(maxPos < minPos){
-        ans = maxPos + (n - 1 - minPos);
+    // cout<<s<<" "<<u<<endl;
+    if((s==u)||(o==n && o%2==0)||(t==n && t%2==0) || (o==t && d%2==0)){
+        cout<<"YES"<<endl;
     }
     else{
-        ans = maxPos + (n - 1 - minPos) - 1;
+        cout<<"NO"<<endl;
     }
-    cout<<ans<<endl;
 }
 
 int main() {
-    int testcases = 1;
-    // cin >> testcases;
+    int testcases ;
+    cin >> testcases;
     while(testcases--)
     {
         solve();

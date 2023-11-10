@@ -1,5 +1,4 @@
 
-
 #pragma GCC optimize("O3,unroll-loops")
 
 #include<bits/stdc++.h>
@@ -67,31 +66,16 @@ void solve(){
     int n;
     cin>>n;
     int a[n];
-    for(int i=0;i<n;i++)
-    {
-      cin>>a[i];
+    int count=0;
+    for(int i=0;i<n;i++){
+        cin>>a[i];
     }
-    int minimum = INT_MAX, minPos = 0;
-    int maximum = 0, maxPos = 0;
-    for (int i = 0; i < n; i++)
-    {
-        if(a[i] > maximum){
-            maximum = a[i];
-            maxPos = i; 
-        }
-        if(a[i] <= minimum){
-            minimum = a[i]; 
-            minPos = i; 
+    for(int i=0;i<n-1;i++){
+        if(a[i] != a[i+1]){
+            count++;
         }
     }
-    int ans;
-    if(maxPos < minPos){
-        ans = maxPos + (n - 1 - minPos);
-    }
-    else{
-        ans = maxPos + (n - 1 - minPos) - 1;
-    }
-    cout<<ans<<endl;
+    cout<<count+1;
 }
 
 int main() {

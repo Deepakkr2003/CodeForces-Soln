@@ -1,11 +1,9 @@
-
-
 #pragma GCC optimize("O3,unroll-loops")
-
+ 
 #include<bits/stdc++.h>
-
+ 
 using namespace std;
-
+ 
 //#define fastio() ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL)
 #define MOD 1000000007
 #define MOD1 998244353
@@ -21,13 +19,13 @@ using namespace std;
 #define set_bits(x) __builtin_popcountll(x)
 #define sz(x) ((int)(x).size())
 #define all(x) (x).begin(), (x).end()
-
+ 
 #define debug(x) cerr << #x<<" "; _print(x); cerr << endl;
-
+ 
 typedef long long ll;
 typedef unsigned long long ull;
 typedef long double lld;
-
+ 
 void _print(ll t) {cerr << t;}
 void _print(int t) {cerr << t;}
 void _print(string t) {cerr << t;}
@@ -35,7 +33,7 @@ void _print(char t) {cerr << t;}
 void _print(lld t) {cerr << t;}
 void _print(double t) {cerr << t;}
 void _print(ull t) {cerr << t;}
-
+ 
 template <class T, class V> void _print(pair <T, V> p);
 template <class T> void _print(vector <T> v);
 template <class T> void _print(set <T> v);
@@ -46,7 +44,7 @@ template <class T> void _print(vector <T> v) {cerr << "[ "; for (T i : v) {_prin
 template <class T> void _print(set <T> v) {cerr << "[ "; for (T i : v) {_print(i); cerr << " ";} cerr << "]";}
 template <class T> void _print(multiset <T> v) {cerr << "[ "; for (T i : v) {_print(i); cerr << " ";} cerr << "]";}
 template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i : v) {_print(i); cerr << " ";} cerr << "]";}
-
+ 
 /*---------------------------------------------------------------------------------------------------------------------------*/
 ll gcd(ll a, ll b) {if (b > a) {return gcd(b, a);} if (b == 0) {return a;} return gcd(b, a % b);}
 ll expo(ll a, ll b, ll mod) {ll res = 1; while (b > 0) {if (b & 1)res = (res * a) % mod; a = (a * a) % mod; b = b >> 1;} return res;}
@@ -64,39 +62,39 @@ ll mod_div(ll a, ll b, ll m) {a = a % m; b = b % m; return (mod_mul(a, mminvprim
 ll phin(ll n) {ll number = n; if (n % 2 == 0) {number /= 2; while (n % 2 == 0) n /= 2;} for (ll i = 3; i <= sqrt(n); i += 2) {if (n % i == 0) {while (n % i == 0)n /= i; number = (number / i * (i - 1));}} if (n > 1)number = (number / n * (n - 1)) ; return number;} //O(sqrt(N))
 /*--------------------------------------------------------------------------------------------------------------------------*/
 void solve(){
-    int n;
-    cin>>n;
-    int a[n];
-    for(int i=0;i<n;i++)
+    int n,x;
+    cin >> n >> x;
+    int cnte=0;
+    ll sum = 0;
+    fo(i,n)
     {
-      cin>>a[i];
-    }
-    int minimum = INT_MAX, minPos = 0;
-    int maximum = 0, maxPos = 0;
-    for (int i = 0; i < n; i++)
+        ll a;
+        cin >> a;
+        sum += a;
+        if(a % 2 == 0) cnte++;
+    }   
+    bool ok = true; 
+    if(x == n)
     {
-        if(a[i] > maximum){
-            maximum = a[i];
-            maxPos = i; 
-        }
-        if(a[i] <= minimum){
-            minimum = a[i]; 
-            minPos = i; 
-        }
+        if(sum % 2 == 0) ok = false;
     }
-    int ans;
-    if(maxPos < minPos){
-        ans = maxPos + (n - 1 - minPos);
+    else if(cnte == 0)
+    {
+        if(x % 2 == 0) ok = false;
     }
-    else{
-        ans = maxPos + (n - 1 - minPos) - 1;
+    else if(cnte == n)
+    {
+        ok = false;
     }
-    cout<<ans<<endl;
+ 
+    if(ok) cout << "Yes" << nline;
+    else cout << "No" << nline;
+  
 }
-
+ 
 int main() {
     int testcases = 1;
-    // cin >> testcases;
+    cin >> testcases;
     while(testcases--)
     {
         solve();

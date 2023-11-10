@@ -1,5 +1,4 @@
 
-
 #pragma GCC optimize("O3,unroll-loops")
 
 #include<bits/stdc++.h>
@@ -65,38 +64,35 @@ ll phin(ll n) {ll number = n; if (n % 2 == 0) {number /= 2; while (n % 2 == 0) n
 /*--------------------------------------------------------------------------------------------------------------------------*/
 void solve(){
     int n;
-    cin>>n;
-    int a[n];
-    for(int i=0;i<n;i++)
+    cin >> n;
+    vector<int> a(n+1,0);
+    fo(i,n) cin >> a[i+1];
+    vector<int> diff(n);
+    for(int i=1 ; i<=n ; i++)
     {
-      cin>>a[i];
+        diff[i-1] = a[i] - a[i-1];
     }
-    int minimum = INT_MAX, minPos = 0;
-    int maximum = 0, maxPos = 0;
-    for (int i = 0; i < n; i++)
+    vector<int> ans;
+    for(int d=1 ; d<=n ; d++)
     {
-        if(a[i] > maximum){
-            maximum = a[i];
-            maxPos = i; 
+        bool ok = true;
+        for(int i=0; i<n ; i++)
+        {
+            if(diff[i%d] != diff[i]){
+                ok = false;
+                break;
+            }
         }
-        if(a[i] <= minimum){
-            minimum = a[i]; 
-            minPos = i; 
-        }
+        if(ok) ans.pb(d);
     }
-    int ans;
-    if(maxPos < minPos){
-        ans = maxPos + (n - 1 - minPos);
-    }
-    else{
-        ans = maxPos + (n - 1 - minPos) - 1;
-    }
-    cout<<ans<<endl;
+    cout << ans.size() << nline;
+    for(auto x : ans) cout << x << " ";
+    cout << nline;
 }
 
 int main() {
     int testcases = 1;
-    // cin >> testcases;
+    cin >> testcases;
     while(testcases--)
     {
         solve();
