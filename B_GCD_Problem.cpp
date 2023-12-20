@@ -65,7 +65,9 @@ ll phin(ll n) {ll number = n; if (n % 2 == 0) {number /= 2; while (n % 2 == 0) n
 void solve(){
     ll n;
     cin>>n;
-    if (n%2==0) cout<<"2 "<<(n-1)-2<<" 1\n";
+    if (n%2==0){
+        cout<<"2 "<<(n-3)<<" 1\n";
+    }
 	else {
 		int cur=(n-1)/2;
 		if (cur%2==0) cout<<cur-1<<" "<<cur+1<<" "<<1<<endl;

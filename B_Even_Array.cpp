@@ -63,21 +63,25 @@ ll mod_div(ll a, ll b, ll m) {a = a % m; b = b % m; return (mod_mul(a, mminvprim
 ll phin(ll n) {ll number = n; if (n % 2 == 0) {number /= 2; while (n % 2 == 0) n /= 2;} for (ll i = 3; i <= sqrt(n); i += 2) {if (n % i == 0) {while (n % i == 0)n /= i; number = (number / i * (i - 1));}} if (n > 1)number = (number / n * (n - 1)) ; return number;} //O(sqrt(N))
 /*--------------------------------------------------------------------------------------------------------------------------*/
 void solve(){
-    ll n;
+    int n;
     cin >> n;
-    map<ll,ll> mp;
-    ll ans = 0;
-    fo(i,n) {
-        ll x;
+    int a = 0, b = 0;
+    for (int i = 0; i < n; i++) {
+        int x;
         cin >> x;
-        mp[x-i]++;
+        if (x % 2 != i % 2) {
+            if (i % 2 == 0) {
+                a++;
+            } else {
+                b++;
+            }
+        }
     }
-    for(auto x : mp)
-    {
-        ll curr = x.second;
-        ans += (curr * (curr -1))/2;
+    if (a != b) {
+        cout << -1 << endl;
+    } else {
+        cout << a << endl;
     }
-    cout << ans << nline;
 }
 
 int main() {

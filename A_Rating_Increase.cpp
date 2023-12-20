@@ -2,6 +2,7 @@
 #pragma GCC optimize("O3,unroll-loops")
 
 #include<bits/stdc++.h>
+#include<string>
 
 using namespace std;
 
@@ -63,25 +64,36 @@ ll mod_div(ll a, ll b, ll m) {a = a % m; b = b % m; return (mod_mul(a, mminvprim
 ll phin(ll n) {ll number = n; if (n % 2 == 0) {number /= 2; while (n % 2 == 0) n /= 2;} for (ll i = 3; i <= sqrt(n); i += 2) {if (n % i == 0) {while (n % i == 0)n /= i; number = (number / i * (i - 1));}} if (n > 1)number = (number / n * (n - 1)) ; return number;} //O(sqrt(N))
 /*--------------------------------------------------------------------------------------------------------------------------*/
 void solve(){
-    ll n;
-    cin >> n;
-    map<ll,ll> mp;
-    ll ans = 0;
-    fo(i,n) {
-        ll x;
-        cin >> x;
-        mp[x-i]++;
+    string s;
+    cin>>s;
+    ll p=s.size();
+    ll t=p/2;
+    string a="",b="",c="",d="";
+    for(int i=0;i<t;i++){
+        a+=s[i];
     }
-    for(auto x : mp)
-    {
-        ll curr = x.second;
-        ans += (curr * (curr -1))/2;
+    for(int i=t;i<p;i++){
+        b+=s[i];
     }
-    cout << ans << nline;
+    // cout<<a<<" "<<b<<endl;
+    int l=stoi(a);
+    int m=stoi(b);
+    // cout<<l<<" "<<m<<endl;
+    ll x=l/10;
+    ll y=((pow(10,t))*(l%10))+m;
+    if(m>l){
+        cout<<l<<" "<<m<<endl;
+    }
+    else if(s[t-1]!='0'){
+        cout<<x<<" "<<y<<endl;
+    }
+    else{
+        cout<<-1<<endl;
+    }
 }
 
 int main() {
-    int testcases = 1;
+    int testcases ;
     cin >> testcases;
     while(testcases--)
     {
