@@ -63,7 +63,42 @@ ll mod_div(ll a, ll b, ll m) {a = a % m; b = b % m; return (mod_mul(a, mminvprim
 ll phin(ll n) {ll number = n; if (n % 2 == 0) {number /= 2; while (n % 2 == 0) n /= 2;} for (ll i = 3; i <= sqrt(n); i += 2) {if (n % i == 0) {while (n % i == 0)n /= i; number = (number / i * (i - 1));}} if (n > 1)number = (number / n * (n - 1)) ; return number;} //O(sqrt(N))
 /*--------------------------------------------------------------------------------------------------------------------------*/
 void solve(){
+    ll n;
+    cin>>n;
+    string s;
+    cin>>s;
+    vector<char>v;
+    for(int i=0;i<s.size();i++){
+        if(s[i]=='a' || s[i]=='e'){
+            if(s[i+2]=='a' || s[i+2]=='e'){
+                v.push_back(s[i]);
+                v.push_back('.');
+            }
+            else{
+                v.push_back(s[i]);
+                v.push_back(s[i+1]);
+                v.push_back('.');
+                i++;
+            }
+        }
+        else{
+            v.push_back(s[i]);
+        }
+    }
+    ll l=v.size();
     
+    if(!(v[l-2]=='a'||v[l-2]=='b'||v[l-2]=='c'||v[l-2]=='d'||v[l-2]=='e')){
+        for( int i=0;i<l-2;i++){
+            cout<<v[i];
+        }
+    }
+    else{
+        for(int i=0;i<l-1;i++){
+            cout<<v[i];
+        }
+    }
+    
+    cout<<endl;
 }
 
 int main() {

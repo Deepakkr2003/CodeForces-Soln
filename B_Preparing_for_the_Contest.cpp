@@ -75,11 +75,13 @@ void solve(){
             v[j]=v[n-j];
             v[n-j]=p;
             j++;
+            
     }
     for(auto it:v){
         cout<<it<<" ";
     }
     cout<<endl;
+    
 }
 
 int main() {
