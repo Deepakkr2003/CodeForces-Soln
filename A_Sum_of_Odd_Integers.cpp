@@ -2,7 +2,6 @@
 #pragma GCC optimize("O3,unroll-loops")
 
 #include<bits/stdc++.h>
-#include<string>
 
 using namespace std;
 
@@ -64,36 +63,18 @@ ll mod_div(ll a, ll b, ll m) {a = a % m; b = b % m; return (mod_mul(a, mminvprim
 ll phin(ll n) {ll number = n; if (n % 2 == 0) {number /= 2; while (n % 2 == 0) n /= 2;} for (ll i = 3; i <= sqrt(n); i += 2) {if (n % i == 0) {while (n % i == 0)n /= i; number = (number / i * (i - 1));}} if (n > 1)number = (number / n * (n - 1)) ; return number;} //O(sqrt(N))
 /*--------------------------------------------------------------------------------------------------------------------------*/
 void solve(){
-    string s;
-    cin>>s;
-    ll p=s.size();
-    ll j=0;
-    string a="",b="";
-    a+=s[0];
-    for(int i=1;i<p;i++){
-        if(s[i]=='0'){
-            a+=s[i];
-        }
-        else{
-            j=i;
-            break;
-        }
-    }
-    for(int i=j;i<p;i++){
-        b+=s[i];
-    }
-    ll x=stoi(a);
-    ll y=stoi(b);
-    if(x>=y){
-        cout<<-1<<endl;
+    ll n,k;
+    cin>>n>>k;
+    if((pow(k,2)>n) || (n%2 != k%2)){
+        cout<<"NO"<<endl;
     }
     else{
-        cout<<x<<" "<<y<<endl;
+        cout<<"YES"<<endl;
     }
 }
 
 int main() {
-    int testcases ;
+    int testcases = 1;
     cin >> testcases;
     while(testcases--)
     {

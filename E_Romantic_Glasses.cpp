@@ -68,7 +68,31 @@ void solve(){
     vector<ll>v(n);
     for(int i=0;i<n;i++){
         cin>>v[i];
-
+    }
+    for(int i=0;i<n;i+=2){
+        v[i]=v[i]*(-1);
+    }
+    map<ll,int>presum;
+    ll sum=0,maxlen=0;
+    for(int i=0;i<n;i++){
+        sum+=v[i];
+        if(sum==0){
+            maxlen=max(maxlen,ll(i+1));
+        }
+        ll rem=sum;
+        if(presum.find(rem)!=presum.end()){
+            ll len=i-presum[rem];
+            maxlen=max(maxlen,len);
+        }
+        if(presum.find(sum)==presum.end()){
+            presum[sum]=i;
+        }
+    }
+    if(maxlen>1){
+        cout<<"YES"<<endl;
+    }
+    else{
+        cout<<"NO"<<endl;
     }
     
 }

@@ -2,7 +2,6 @@
 #pragma GCC optimize("O3,unroll-loops")
 
 #include<bits/stdc++.h>
-#include<string>
 
 using namespace std;
 
@@ -64,36 +63,29 @@ ll mod_div(ll a, ll b, ll m) {a = a % m; b = b % m; return (mod_mul(a, mminvprim
 ll phin(ll n) {ll number = n; if (n % 2 == 0) {number /= 2; while (n % 2 == 0) n /= 2;} for (ll i = 3; i <= sqrt(n); i += 2) {if (n % i == 0) {while (n % i == 0)n /= i; number = (number / i * (i - 1));}} if (n > 1)number = (number / n * (n - 1)) ; return number;} //O(sqrt(N))
 /*--------------------------------------------------------------------------------------------------------------------------*/
 void solve(){
-    string s;
-    cin>>s;
-    ll p=s.size();
-    ll j=0;
-    string a="",b="";
-    a+=s[0];
-    for(int i=1;i<p;i++){
-        if(s[i]=='0'){
-            a+=s[i];
+    ll n,k;
+    cin>>n>>k;
+    vector<ll>v(n);
+    for(int i=0;i<n;i++){
+        cin>>v[i];
+    }
+    sort(v.begin(),v.end());
+    ll c=1,m=1;
+    for(int i=1;i<n;i++){
+        if((v[i]-v[i-1])>k){
+            c=1;
         }
         else{
-            j=i;
-            break;
+            c++;
         }
+        m=max(c,m);
     }
-    for(int i=j;i<p;i++){
-        b+=s[i];
-    }
-    ll x=stoi(a);
-    ll y=stoi(b);
-    if(x>=y){
-        cout<<-1<<endl;
-    }
-    else{
-        cout<<x<<" "<<y<<endl;
-    }
+    
+    cout<<n-m<<endl;
 }
 
 int main() {
-    int testcases ;
+    int testcases = 1;
     cin >> testcases;
     while(testcases--)
     {
