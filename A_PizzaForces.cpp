@@ -65,27 +65,7 @@ ll phin(ll n) {ll number = n; if (n % 2 == 0) {number /= 2; while (n % 2 == 0) n
 void solve(){
     ll n;
     cin>>n;
-    ll p=n/4;
-    ll q=n/6;
-    ll r=(n-6)/4;
-    ll s=(n-8)/6;
-    if(n%2 || n==2){
-        cout<<-1<<endl;
-    }
-    else{
-        if(n%4==0 && n%6==0){
-            cout<<q<<" "<<p<<endl;
-        }
-        else if(n%4==0 && n%6){
-            cout<<q+1<<" "<<p<<endl;
-        }
-        else if(n%4 && n%6==0){
-            cout<<q<<" "<<r+1<<endl;
-        }
-        else{
-            cout<<s+2<<" "<<r+1<<endl;
-        }
-    }
+    cout << max(6LL, n + 1) / 2 * 5 << endl;
 }
 
 int main() {

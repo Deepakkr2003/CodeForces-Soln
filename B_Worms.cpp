@@ -63,34 +63,28 @@ ll mod_div(ll a, ll b, ll m) {a = a % m; b = b % m; return (mod_mul(a, mminvprim
 ll phin(ll n) {ll number = n; if (n % 2 == 0) {number /= 2; while (n % 2 == 0) n /= 2;} for (ll i = 3; i <= sqrt(n); i += 2) {if (n % i == 0) {while (n % i == 0)n /= i; number = (number / i * (i - 1));}} if (n > 1)number = (number / n * (n - 1)) ; return number;} //O(sqrt(N))
 /*--------------------------------------------------------------------------------------------------------------------------*/
 void solve(){
-    ll n;
-    cin>>n;
-    ll p=n/4;
-    ll q=n/6;
-    ll r=(n-6)/4;
-    ll s=(n-8)/6;
-    if(n%2 || n==2){
-        cout<<-1<<endl;
+    int n, m, cnt = 0, sum = 0;
+    cin >> n;
+    vector<int> a(n),c;
+    for (int i = 0; i < n; i++)
+    {
+        cin >> a[i];
+        sum += a[i];
+        c.push_back(sum);
     }
-    else{
-        if(n%4==0 && n%6==0){
-            cout<<q<<" "<<p<<endl;
-        }
-        else if(n%4==0 && n%6){
-            cout<<q+1<<" "<<p<<endl;
-        }
-        else if(n%4 && n%6==0){
-            cout<<q<<" "<<r+1<<endl;
-        }
-        else{
-            cout<<s+2<<" "<<r+1<<endl;
-        }
+    cin >> m;
+    vector<int>b(m);
+    for (int i = 0; i < m; i++)
+        cin >> b[i];
+    for (int j = 0; j < m; j++)
+    {
+        cout << lower_bound(c.begin(),c.end(), b[j]) - c.begin()+1<< endl;
     }
 }
 
 int main() {
     int testcases = 1;
-    cin >> testcases;
+    // cin >> testcases;
     while(testcases--)
     {
         solve();
