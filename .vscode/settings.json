@@ -7,7 +7,8 @@
     "complex": "cpp",
     "cstdlib": "cpp",
     "ostream": "cpp",
-    "xutility": "cpp"
+    "xutility": "cpp",
+    "xstring": "cpp"
   },
   "C_Cpp.errorSquiggles": "disabled"
 }

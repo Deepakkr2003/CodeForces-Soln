@@ -65,21 +65,22 @@ ll phin(ll n) {ll number = n; if (n % 2 == 0) {number /= 2; while (n % 2 == 0) n
 void solve(){
     ll n;
     cin>>n;
-    map<string,int>m;
-    for(int i=0;i<n;i++){
-        string s;
-        cin>>s;
-        m[s]++;
+    if(n==0){
+        cout<<1<<endl;
+        return;
     }
-    ll p=0;
-    string f="";
-    for(auto it:m){
-        if(it.second>p){
-            p=it.second;
-            f=it.first;
-        }
+    if(n%4==0){
+        cout<<6<<endl;
     }
-    cout<<f<<endl;
+    else if(n%4==1){
+        cout<<8<<endl;
+    }
+    else if(n%4==2){
+        cout<<4<<endl;
+    }
+    else{
+        cout<<2<<endl;
+    }
 }
 
 int main() {

@@ -65,26 +65,18 @@ ll phin(ll n) {ll number = n; if (n % 2 == 0) {number /= 2; while (n % 2 == 0) n
 void solve(){
     ll n;
     cin>>n;
-    map<string,int>m;
-    for(int i=0;i<n;i++){
-        string s;
-        cin>>s;
-        m[s]++;
+    ll p=360%(180-n);
+    if(p==0){
+        cout<<"YES"<<endl;
     }
-    ll p=0;
-    string f="";
-    for(auto it:m){
-        if(it.second>p){
-            p=it.second;
-            f=it.first;
-        }
+    else{
+        cout<<"NO"<<endl;
     }
-    cout<<f<<endl;
 }
 
 int main() {
     int testcases = 1;
-    // cin >> testcases;
+    cin >> testcases;
     while(testcases--)
     {
         solve();

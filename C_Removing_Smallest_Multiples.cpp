@@ -63,28 +63,32 @@ ll mod_div(ll a, ll b, ll m) {a = a % m; b = b % m; return (mod_mul(a, mminvprim
 ll phin(ll n) {ll number = n; if (n % 2 == 0) {number /= 2; while (n % 2 == 0) n /= 2;} for (ll i = 3; i <= sqrt(n); i += 2) {if (n % i == 0) {while (n % i == 0)n /= i; number = (number / i * (i - 1));}} if (n > 1)number = (number / n * (n - 1)) ; return number;} //O(sqrt(N))
 /*--------------------------------------------------------------------------------------------------------------------------*/
 void solve(){
-    ll n;
-    cin>>n;
-    map<string,int>m;
-    for(int i=0;i<n;i++){
-        string s;
-        cin>>s;
-        m[s]++;
-    }
-    ll p=0;
-    string f="";
-    for(auto it:m){
-        if(it.second>p){
-            p=it.second;
-            f=it.first;
+    int n;
+    cin >> n;
+    string str;
+    cin >> str;
+    vector<int> sieve(n+1,true);
+    ll ans = 0;
+    for(int i=1 ; i<=n ; i++)
+    {
+        if(str[i-1] == '0')
+        {
+            for(int j=i ; j <= n ; j+=i)
+            {
+                if(str[j-1] == '1') break;
+                if(sieve[j]) {
+                    sieve[j] = false;
+                    ans += i;
+                }
+            }
         }
     }
-    cout<<f<<endl;
+    cout << ans << nline;
 }
 
 int main() {
     int testcases = 1;
-    // cin >> testcases;
+    cin >> testcases;
     while(testcases--)
     {
         solve();

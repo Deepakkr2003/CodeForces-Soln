@@ -65,21 +65,36 @@ ll phin(ll n) {ll number = n; if (n % 2 == 0) {number /= 2; while (n % 2 == 0) n
 void solve(){
     ll n;
     cin>>n;
-    map<string,int>m;
+    vector<ll>v(n);
+
     for(int i=0;i<n;i++){
-        string s;
-        cin>>s;
-        m[s]++;
+        cin>>v[i];
     }
-    ll p=0;
-    string f="";
-    for(auto it:m){
-        if(it.second>p){
-            p=it.second;
-            f=it.first;
+    ll s=0,c=0,p=0,q=0,ans=0;
+    for(int i=0;i<n;i++){
+        if(v[i]==1){
+            c++;
+        }
+        if(v[i]==2){
+            s++;
+        }
+        if(v[i]==3){
+            p++;
+        }
+        if(v[i]==4){
+            q++;
         }
     }
-    cout<<f<<endl;
+    ans+=q;
+    ans+=p;
+    ll d=max(0ll,(c-p));
+    ans+=(s+1)/2;
+    if(s%2==1 && d>0 && s>0){
+        d-=2;
+    }
+
+    ans+=max(0ll,(d+3)/4);
+    cout<<ans<<endl;
 }
 
 int main() {
