@@ -8,7 +8,8 @@
     "cstdlib": "cpp",
     "ostream": "cpp",
     "xutility": "cpp",
-    "xstring": "cpp"
+    "xstring": "cpp",
+    "initializer_list": "cpp"
   },
   "C_Cpp.errorSquiggles": "disabled"
 }
