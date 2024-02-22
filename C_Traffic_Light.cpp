@@ -63,20 +63,31 @@ ll mod_div(ll a, ll b, ll m) {a = a % m; b = b % m; return (mod_mul(a, mminvprim
 ll phin(ll n) {ll number = n; if (n % 2 == 0) {number /= 2; while (n % 2 == 0) n /= 2;} for (ll i = 3; i <= sqrt(n); i += 2) {if (n % i == 0) {while (n % i == 0)n /= i; number = (number / i * (i - 1));}} if (n > 1)number = (number / n * (n - 1)) ; return number;} //O(sqrt(N))
 /*--------------------------------------------------------------------------------------------------------------------------*/
 void solve(){
-    ll n,x,y,c=0;
-    cin>>n>>x>>y;
-    vector<ll>v(n);
+    ll n;
+    char c;
+    cin>>n>>c;
+
+    string s;
+    cin>>s;
+    if(c=='g'){
+        cout<<0<<endl;
+        return;
+    }
+    vector<ll>g;
+    s+=s;
+    for(int i=0;i<2*n;i++){
+        if(s[i]=='g'){
+            g.push_back(i);
+        }
+    }
+    ll ans=0;
     for(int i=0;i<n;i++){
-        cin>>v[i];
+        if(s[i]==c){
+            int u=lower_bound(g.begin(),g.end(),i)-g.begin();
+            ans=max(ans,g[u]-i);
+        }
     }
-    map<pair<ll,ll>,ll>m;
-    for(auto i:v){
-        ll p=(x-(i%x))%x;
-        ll q=i%y;
-        c+=m[{p,q}];
-        m[{i%x,i%y}]++;
-    }
-    cout<<c<<endl;
+    cout<<ans<<endl;
 }
 
 int main() {

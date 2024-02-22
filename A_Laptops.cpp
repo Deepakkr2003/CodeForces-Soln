@@ -65,11 +65,28 @@ ll phin(ll n) {ll number = n; if (n % 2 == 0) {number /= 2; while (n % 2 == 0) n
 void solve(){
     ll n;
     cin>>n;
+    ll p=n;
+    ll a,b;
+    bool flag=true;
+    vector<pair<ll,ll>>v;
     while(n--){
-        ll a,b;
         cin>>a>>b;
-        
+        v.push_back({a,b});
     }
+    sort(v.begin(),v.end());
+    for(ll i=1;i<p;i++){
+        if(v[i-1].second<v[i].second){
+            flag=false;
+            break;
+        }
+    }
+    if(flag==true){
+        cout<<"Happy Alex"<<endl;
+    }
+    else{
+        cout<<"Poor Alex"<<endl;
+    }
+   
 }
 
 int main() {

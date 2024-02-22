@@ -63,20 +63,37 @@ ll mod_div(ll a, ll b, ll m) {a = a % m; b = b % m; return (mod_mul(a, mminvprim
 ll phin(ll n) {ll number = n; if (n % 2 == 0) {number /= 2; while (n % 2 == 0) n /= 2;} for (ll i = 3; i <= sqrt(n); i += 2) {if (n % i == 0) {while (n % i == 0)n /= i; number = (number / i * (i - 1));}} if (n > 1)number = (number / n * (n - 1)) ; return number;} //O(sqrt(N))
 /*--------------------------------------------------------------------------------------------------------------------------*/
 void solve(){
-    ll n,x,y,c=0;
-    cin>>n>>x>>y;
-    vector<ll>v(n);
-    for(int i=0;i<n;i++){
-        cin>>v[i];
+    ll n;
+    cin>>n;
+    ll sum=0;
+    if(n<10){
+        cout<<(n*(n+1))/2<<endl;
     }
-    map<pair<ll,ll>,ll>m;
-    for(auto i:v){
-        ll p=(x-(i%x))%x;
-        ll q=i%y;
-        c+=m[{p,q}];
-        m[{i%x,i%y}]++;
+    else if(n<100){
+        ll p=n/10;
+        ll q=n%10;
+        ll g=p;
+        ll d=p+q;
+        ll s=45;
+        while(p--){
+            sum+=s;
+            s+=10;
+        }
+        for(int i=g;i<=d;i++){
+            sum+=i;
+        }
+        cout<<sum<<endl;
+
     }
-    cout<<c<<endl;
+    ll h=900;
+    else if(n<1000){
+       ll p=n/100;
+       ll q=n%100;
+       ll r=q/10;
+       ll s=n%10;
+       while()
+
+    }
 }
 
 int main() {
