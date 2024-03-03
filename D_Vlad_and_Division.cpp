@@ -62,29 +62,34 @@ ll mod_sub(ll a, ll b, ll m) {a = a % m; b = b % m; return (((a - b) % m) + m) %
 ll mod_div(ll a, ll b, ll m) {a = a % m; b = b % m; return (mod_mul(a, mminvprime(b, m), m) + m) % m;}  //only for prime m
 ll phin(ll n) {ll number = n; if (n % 2 == 0) {number /= 2; while (n % 2 == 0) n /= 2;} for (ll i = 3; i <= sqrt(n); i += 2) {if (n % i == 0) {while (n % i == 0)n /= i; number = (number / i * (i - 1));}} if (n > 1)number = (number / n * (n - 1)) ; return number;} //O(sqrt(N))
 /*--------------------------------------------------------------------------------------------------------------------------*/
-ll g(ll x){
-	ll res=0;
-	while(x){
-		res+=x%10;
-		x/=10;
-	}
-	return res;
+void solve(){
+    const ll MASK=INT_MAX;
+    ll n,ans=0;
+    cin>>n;
+    vector<ll>a(n);
+    for(int i=0;i<n;i++){
+        cin>>a[i];
+    }
+    multiset<ll>m;
+    for(auto it:a){
+        if(m.find(MASK^it)!=m.end()){
+            ans++;
+            m.erase(m.find(MASK^it));
+        }
+        else{
+            m.insert(it);
+        }
+
+    }
+    cout<<ans+m.size()<<endl;
 }
-const ll N=2e5+1;
 
-signed main() {
-	vector<ll>f(N);
-	for(int i=1;i<N;i++){
-		f[i]=f[i-1]+g(i);
-	}
-
-	int testcases = 1;
-	cin >> testcases;
-	while(testcases--)
-	{
-		ll n;
-		cin>>n;
-		cout<<f[n]<<endl;
-	}
-	return 0;
+int main() {
+    int testcases = 1;
+    cin >> testcases;
+    while(testcases--)
+    {
+        solve();
+    }
+    return 0;
 }

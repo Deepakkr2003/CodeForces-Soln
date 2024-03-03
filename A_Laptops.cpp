@@ -74,18 +74,17 @@ void solve(){
         v.push_back({a,b});
     }
     sort(v.begin(),v.end());
-    for(ll i=1;i<p;i++){
-        if(v[i-1].second<v[i].second){
+    for(ll i=0;i<p-1;i++){
+        if(v[i].second>v[i+1].second){
+            cout<<"Happy Alex"<<endl;
             flag=false;
             break;
         }
     }
     if(flag==true){
-        cout<<"Happy Alex"<<endl;
-    }
-    else{
         cout<<"Poor Alex"<<endl;
     }
+    
    
 }
 
