@@ -65,36 +65,17 @@ ll phin(ll n) {ll number = n; if (n % 2 == 0) {number /= 2; while (n % 2 == 0) n
 void solve(){
     ll n;
     cin>>n;
-    ll a[n][n-1];
-    vector<ll>v;
-    for(int i=0;i<n;i++){
-        for(int j=0;j<(n-1);j++){
-            cin>>a[i][j];
-            if(j==0){
-                v.push_back(a[i][j]);
-            }
-        }
+    string s;
+    cin>>s;
+    string t=s;
+    reverse(all(t));
+    if(t<s){
+        cout<<t+s<<endl;
+        return;
     }
-    sort(v.begin(),v.end());
-    ll first;
-    for(int i=1;i<v.size();i++){
-        if(v[i-1]==v[i]){
-            first=v[i-1];
-            break;
-        }
-    }
+    cout<<s<<endl;
     
-    ll index=0;
-    for(int i=0;i<n;i++){
-        if(a[i][0]!=first){
-            index=i;
-        }
-    }
-    cout<<first<<" ";
-    for(int i=0;i<(n-1);i++){
-        cout<<a[index][i]<<" ";
-    }
-    cout<<endl;
+    
 }
 
 int main() {

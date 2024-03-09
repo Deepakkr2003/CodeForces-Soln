@@ -65,36 +65,41 @@ ll phin(ll n) {ll number = n; if (n % 2 == 0) {number /= 2; while (n % 2 == 0) n
 void solve(){
     ll n;
     cin>>n;
-    ll a[n][n-1];
-    vector<ll>v;
+    vector<ll>v(n),pref(n),suff(n);
     for(int i=0;i<n;i++){
-        for(int j=0;j<(n-1);j++){
-            cin>>a[i][j];
-            if(j==0){
-                v.push_back(a[i][j]);
-            }
-        }
+        cin>>v[i];
     }
-    sort(v.begin(),v.end());
-    ll first;
-    for(int i=1;i<v.size();i++){
-        if(v[i-1]==v[i]){
-            first=v[i-1];
+    set<ll>preMex,suffMex;
+    ll a=0,b=0;
+
+    for(int i=0;i<n;i++){
+        preMex.insert(v[i]);
+        while(preMex.count(a)) a++;
+        pref[i]=a;
+    }
+    for(int i=n-1;i>=0;i--){
+        suffMex.insert(v[i]);
+        while(suffMex.count(b)) b++;
+        suff[i]=b;
+    }
+
+    vector<pair<ll,ll>>ans;
+    for(int i=0;i+1<n;i++){
+        if(pref[i]==suff[i+1]){
+            ans.push_back({1,i+1});
+            ans.push_back({i+2,n});
             break;
         }
     }
-    
-    ll index=0;
-    for(int i=0;i<n;i++){
-        if(a[i][0]!=first){
-            index=i;
+    if(!ans.size()){
+        cout<<-1<<endl;
+    }
+    else{
+        cout<<2<<endl;
+        for(auto &i:ans){
+            cout<<i.first<<" "<<i.second<<endl;
         }
     }
-    cout<<first<<" ";
-    for(int i=0;i<(n-1);i++){
-        cout<<a[index][i]<<" ";
-    }
-    cout<<endl;
 }
 
 int main() {

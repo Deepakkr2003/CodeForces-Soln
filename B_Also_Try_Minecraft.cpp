@@ -65,29 +65,37 @@ ll phin(ll n) {ll number = n; if (n % 2 == 0) {number /= 2; while (n % 2 == 0) n
 void solve(){
     ll n,m;
     cin>>n>>m;
-    vector<ll>v(n);
+    ll v[n];
     for(int i=0;i<n;i++){
         cin>>v[i];
     }
+    
+    ll pref[n+1];
+    ll suff[n+1];
+
+    for(ll i=1;i<n;i++){
+        pref[i+1]=pref[i]+(v[i-1]>v[i] ? (v[i-1]-v[i]) : 0);
+    }
+    for(ll i=n-2;i>=0;i--){
+        suff[i+1]=suff[i+2]+(v[i+1]>v[i] ? (v[i+1]-v[i]) : 0);
+    }
+
+    
+
     while(m--){
-        ll a,b,s=0;
+        ll a,b;
         cin>>a>>b;
-        if(b>a){
-            for(int i=a;i<b;i++){
-                if(v[i]<v[i-1]){
-                    s+=(v[i-1]-v[i]);
-                }
-            }
+        
+        if(a<b){
+            cout<<pref[b]-pref[a]<<endl;
         }
         else{
-            for(int i=a-1;i>=b;i--){
-                if(v[i]>v[i-1]){
-                    s+=(v[i]-v[i-1]);
-                }
-            }
+            cout<<suff[b]-suff[a]<<endl;
         }
-        cout<<s<<endl;
     }
+
+    
+    
 }
 
 int main() {

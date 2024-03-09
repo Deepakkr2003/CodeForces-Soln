@@ -63,38 +63,27 @@ ll mod_div(ll a, ll b, ll m) {a = a % m; b = b % m; return (mod_mul(a, mminvprim
 ll phin(ll n) {ll number = n; if (n % 2 == 0) {number /= 2; while (n % 2 == 0) n /= 2;} for (ll i = 3; i <= sqrt(n); i += 2) {if (n % i == 0) {while (n % i == 0)n /= i; number = (number / i * (i - 1));}} if (n > 1)number = (number / n * (n - 1)) ; return number;} //O(sqrt(N))
 /*--------------------------------------------------------------------------------------------------------------------------*/
 void solve(){
-    ll n;
+    ll n,c=0;
     cin>>n;
-    ll a[n][n-1];
-    vector<ll>v;
+    ll p=n;
+    string s;
+    cin>>s;
+    set<char>f,g;
     for(int i=0;i<n;i++){
-        for(int j=0;j<(n-1);j++){
-            cin>>a[i][j];
-            if(j==0){
-                v.push_back(a[i][j]);
-            }
-        }
-    }
-    sort(v.begin(),v.end());
-    ll first;
-    for(int i=1;i<v.size();i++){
-        if(v[i-1]==v[i]){
-            first=v[i-1];
+        if(f.find(s[i])!=f.end()){
+            p=i;
             break;
         }
-    }
-    
-    ll index=0;
-    for(int i=0;i<n;i++){
-        if(a[i][0]!=first){
-            index=i;
+        else{
+            c++;
+            f.insert(s[i]);
         }
     }
-    cout<<first<<" ";
-    for(int i=0;i<(n-1);i++){
-        cout<<a[index][i]<<" ";
+    for(int i=p;i<n;i++){
+        g.insert(s[i]);
     }
-    cout<<endl;
+    ll q=g.size();
+    cout<<c+q<<endl;
 }
 
 int main() {
