@@ -65,27 +65,21 @@ ll phin(ll n) {ll number = n; if (n % 2 == 0) {number /= 2; while (n % 2 == 0) n
 void solve(){
     string s;
     cin>>s;
-    string t;
-    cin>>t;
-     for(int i=0;i<s.size();i++){
-        s[i]=tolower(s[i]);
-     }
-     for(int i=0;i<s.size();i++){
-        t[i]=tolower(t[i]);
-     }
-
-     if(s==t){
-        cout<<0<<endl;
-     }else if(s<t){
-        cout<<-1<<endl;
-     }else{
-        cout<<1<<endl;
-     }
+    ll p=0;
+    for(int i=0;i<s.size();i++){
+        if(p && s[i]=='B'){
+            p--;
+        }
+        else{
+            p++;
+        }
+    }
+    cout<<p<<endl;
 }
 
 int main() {
     int testcases = 1;
-    // cin >> testcases;
+    cin >> testcases;
     while(testcases--)
     {
         solve();

@@ -63,27 +63,26 @@ ll mod_div(ll a, ll b, ll m) {a = a % m; b = b % m; return (mod_mul(a, mminvprim
 ll phin(ll n) {ll number = n; if (n % 2 == 0) {number /= 2; while (n % 2 == 0) n /= 2;} for (ll i = 3; i <= sqrt(n); i += 2) {if (n % i == 0) {while (n % i == 0)n /= i; number = (number / i * (i - 1));}} if (n > 1)number = (number / n * (n - 1)) ; return number;} //O(sqrt(N))
 /*--------------------------------------------------------------------------------------------------------------------------*/
 void solve(){
-    ll n,c=0;
-    cin>>n;
-    ll p=n;
-    string s;
-    cin>>s;
-    set<char>f,g;
-    for(int i=0;i<n;i++){
-        if(f.find(s[i])!=f.end()){
-            p=i;
-            break;
+    int n;
+    cin >> n;
+    string str;
+    cin >> str;
+    int ans = 0;
+    vector<int> freq(26,0),tmp(26,0);
+    fo(i,n) if(freq[str[i]-'a']++);
+
+    fo(i,n)
+    {
+        int cnt = 0;
+        tmp[str[i]-'a']++;
+        freq[str[i]-'a']--;
+        fo(i,26){
+            if(tmp[i] != 0) cnt++;
+            if(freq[i] != 0) cnt++;
         }
-        else{
-            c++;
-            f.insert(s[i]);
-        }
+        ans = max(ans,cnt);
     }
-    for(int i=p;i<n;i++){
-        g.insert(s[i]);
-    }
-    ll q=g.size();
-    cout<<c+q<<endl;
+    cout << ans << endl;
 }
 
 int main() {

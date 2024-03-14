@@ -62,30 +62,35 @@ ll mod_sub(ll a, ll b, ll m) {a = a % m; b = b % m; return (((a - b) % m) + m) %
 ll mod_div(ll a, ll b, ll m) {a = a % m; b = b % m; return (mod_mul(a, mminvprime(b, m), m) + m) % m;}  //only for prime m
 ll phin(ll n) {ll number = n; if (n % 2 == 0) {number /= 2; while (n % 2 == 0) n /= 2;} for (ll i = 3; i <= sqrt(n); i += 2) {if (n % i == 0) {while (n % i == 0)n /= i; number = (number / i * (i - 1));}} if (n > 1)number = (number / n * (n - 1)) ; return number;} //O(sqrt(N))
 /*--------------------------------------------------------------------------------------------------------------------------*/
-void solve(){
-    string s;
-    cin>>s;
-    string t;
-    cin>>t;
-     for(int i=0;i<s.size();i++){
-        s[i]=tolower(s[i]);
-     }
-     for(int i=0;i<s.size();i++){
-        t[i]=tolower(t[i]);
-     }
 
-     if(s==t){
-        cout<<0<<endl;
-     }else if(s<t){
-        cout<<-1<<endl;
-     }else{
-        cout<<1<<endl;
-     }
+
+void solve(){
+    ll n,c=0;
+    cin>>n;
+    vector<ll>v(n);
+    for(int i=0;i<n;i++){
+        cin>>v[i];
+    }
+    ll f=1;
+    for(int i=0;i<n-2;i++){
+        if(v[i]<0) break;
+
+        v[i+1]-=2*v[i];
+        v[i+2]-=v[i];
+        v[i]=0;
+    }
+    if(count(v.begin(),v.end(),0)==n){
+        cout<<"YES"<<endl;
+    }
+    else{
+        cout<<"NO"<<endl;
+    }
+
 }
 
 int main() {
     int testcases = 1;
-    // cin >> testcases;
+    cin >> testcases;
     while(testcases--)
     {
         solve();

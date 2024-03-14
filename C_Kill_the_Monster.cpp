@@ -63,29 +63,31 @@ ll mod_div(ll a, ll b, ll m) {a = a % m; b = b % m; return (mod_mul(a, mminvprim
 ll phin(ll n) {ll number = n; if (n % 2 == 0) {number /= 2; while (n % 2 == 0) n /= 2;} for (ll i = 3; i <= sqrt(n); i += 2) {if (n % i == 0) {while (n % i == 0)n /= i; number = (number / i * (i - 1));}} if (n > 1)number = (number / n * (n - 1)) ; return number;} //O(sqrt(N))
 /*--------------------------------------------------------------------------------------------------------------------------*/
 void solve(){
-    string s;
-    cin>>s;
-    string t;
-    cin>>t;
-     for(int i=0;i<s.size();i++){
-        s[i]=tolower(s[i]);
-     }
-     for(int i=0;i<s.size();i++){
-        t[i]=tolower(t[i]);
-     }
+    ll n,m;
+    cin>>n>>m;
+    ll p,q;
+    cin>>p>>q;
+    ll k,w,a;
+    cin>>k>>w>>a;
 
-     if(s==t){
-        cout<<0<<endl;
-     }else if(s<t){
-        cout<<-1<<endl;
-     }else{
-        cout<<1<<endl;
-     }
+    for(int i=0;i<=k;i++){
+        ll h=n+a*i;
+        ll d=m+w*(k-i);
+        
+        ll x=(p+d-1)/d;
+        ll y=(h+q-1)/q;
+
+        if(x<=y){
+            cout<<"YES"<<endl;
+            return;
+        }
+    }
+    cout<<"NO"<<endl;
 }
 
 int main() {
     int testcases = 1;
-    // cin >> testcases;
+    cin >> testcases;
     while(testcases--)
     {
         solve();

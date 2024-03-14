@@ -65,13 +65,25 @@ ll phin(ll n) {ll number = n; if (n % 2 == 0) {number /= 2; while (n % 2 == 0) n
 void solve(){
     ll n,k;
     cin>>n>>k;
-    vector<ll>a(n),b(n);
+    vector<ll>a(n),b(n),ans(n);
+    vector<pair<ll,ll>>v;
     for(int i=0;i<n;i++){
         cin>>a[i];
+        v.push_back({a[i],i});
     }
+    sort(v.begin(),v.end());
     for(int i=0;i<n;i++){
         cin>>b[i];
     }
+    sort(b.begin(),b.end());
+    for(int i=0;i<n;i++){
+        ans[v[i].second]=b[i];
+    }
+    for(auto it:ans){
+        cout<<it<<" ";
+    }
+    cout<<endl;
+
 }
 
 int main() {
