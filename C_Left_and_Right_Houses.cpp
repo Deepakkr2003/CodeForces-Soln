@@ -63,20 +63,30 @@ ll mod_div(ll a, ll b, ll m) {a = a % m; b = b % m; return (mod_mul(a, mminvprim
 ll phin(ll n) {ll number = n; if (n % 2 == 0) {number /= 2; while (n % 2 == 0) n /= 2;} for (ll i = 3; i <= sqrt(n); i += 2) {if (n % i == 0) {while (n % i == 0)n /= i; number = (number / i * (i - 1));}} if (n > 1)number = (number / n * (n - 1)) ; return number;} //O(sqrt(N))
 /*--------------------------------------------------------------------------------------------------------------------------*/
 void solve(){
-    ll n,c=0;
-    cin>>n;
-    vector<ll>v(n);
-    for(int i=0;i<n;i++){
-        cin>>v[i];
-    }
-    for(int i=1;i<n;i++){
-        if(v[i]>v[i-1]){
-            c++;
+    int n;
+    cin >> n;
+    string str;
+    cin >> str;
+    int cnt = 0 , leftCnt = 0 , ind = -1;
+    double ans = n;
+
+    for(auto x : str) if(x == '1') cnt++;
+    for(int i=0 ; i<=n ; i++)
+    {
+        if(i>0 && str[i-1] == '1') leftCnt++;
+
+        int leftHappy = (i+1)/2;
+        int rightHappy = (n-i+1)/2;
+
+        if((i-leftCnt) >= leftHappy && (cnt - leftCnt) >= rightHappy)
+        {
+            if(abs((double)n/2.0-(double)i) < ans){
+                ans = abs((double)n/2.0-i);
+                ind = i;
+            }
         }
     }
-    ll p=(c)/2;
-    cout<<p<<endl;
-   
+    cout << ind << nline;
     
 }
 

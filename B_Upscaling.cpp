@@ -63,21 +63,40 @@ ll mod_div(ll a, ll b, ll m) {a = a % m; b = b % m; return (mod_mul(a, mminvprim
 ll phin(ll n) {ll number = n; if (n % 2 == 0) {number /= 2; while (n % 2 == 0) n /= 2;} for (ll i = 3; i <= sqrt(n); i += 2) {if (n % i == 0) {while (n % i == 0)n /= i; number = (number / i * (i - 1));}} if (n > 1)number = (number / n * (n - 1)) ; return number;} //O(sqrt(N))
 /*--------------------------------------------------------------------------------------------------------------------------*/
 void solve(){
-    ll n,c=0;
+    ll n;
     cin>>n;
-    vector<ll>v(n);
-    for(int i=0;i<n;i++){
-        cin>>v[i];
+    vector<char>p,q;
+    for(int i=0;i<n;i+=2){
+        p.push_back('#');
+        p.push_back('#');
+        p.push_back('.');
+        p.push_back('.');
     }
-    for(int i=1;i<n;i++){
-        if(v[i]>v[i-1]){
-            c++;
-        }
-    }
-    ll p=(c)/2;
-    cout<<p<<endl;
-   
     
+    for(int i=0;i<n;i+=2){
+        q.push_back('.');
+        q.push_back('.');
+        q.push_back('#');
+        q.push_back('#');
+    }
+    
+    for(int i=0;i<2*n;i++){
+        if(i==0 || i==1 || i==4 || i==5 || i==8 || i==9 || i==12 || i==13 || i==16 || i==17 || i==20 || i==21 || i==24 || i==25 || i==28 || i==29 || i==32 || i==33 || i==36 || i==37  ){
+            for(int j=0;j<2*n;j++){
+                cout<<p[j];
+            }
+            cout<<endl;
+            
+        }
+        
+    else{
+         for(int j=0;j<2*n;j++){
+                cout<<q[j];
+            }
+            cout<<endl;
+        
+    }
+    }
 }
 
 int main() {

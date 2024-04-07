@@ -63,21 +63,48 @@ ll mod_div(ll a, ll b, ll m) {a = a % m; b = b % m; return (mod_mul(a, mminvprim
 ll phin(ll n) {ll number = n; if (n % 2 == 0) {number /= 2; while (n % 2 == 0) n /= 2;} for (ll i = 3; i <= sqrt(n); i += 2) {if (n % i == 0) {while (n % i == 0)n /= i; number = (number / i * (i - 1));}} if (n > 1)number = (number / n * (n - 1)) ; return number;} //O(sqrt(N))
 /*--------------------------------------------------------------------------------------------------------------------------*/
 void solve(){
-    ll n,c=0;
+    ll n;
     cin>>n;
-    vector<ll>v(n);
-    for(int i=0;i<n;i++){
-        cin>>v[i];
+
+    vector<ll>v;
+   
+    v.push_back(10);
+    v.push_back(11);
+    ll i=0;
+
+    while(true){
+        if(i>=v.size())break;
+        ll x=v[i]*10;
+        ll y=x+1;
+        if(x<=n){
+            v.push_back(x);
+        }
+        if(y<=n){
+            v.push_back(y);
+        }
+        i++;
     }
-    for(int i=1;i<n;i++){
-        if(v[i]>v[i-1]){
-            c++;
+    reverse(v.begin(),v.end());
+    while(n>1){
+        bool ok=false;
+        for(int i=0;i<v.size();i++){
+            if(n%v[i]==0){
+                n/=v[i];
+                ok=true;
+            }
+        }
+        if(!ok){
+            break;
         }
     }
-    ll p=(c)/2;
-    cout<<p<<endl;
-   
+    if(n==1){
+        cout<<"YES"<<endl;
+    }
+    else{
+        cout<<"NO"<<endl;
+    }
     
+
 }
 
 int main() {

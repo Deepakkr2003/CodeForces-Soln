@@ -63,20 +63,46 @@ ll mod_div(ll a, ll b, ll m) {a = a % m; b = b % m; return (mod_mul(a, mminvprim
 ll phin(ll n) {ll number = n; if (n % 2 == 0) {number /= 2; while (n % 2 == 0) n /= 2;} for (ll i = 3; i <= sqrt(n); i += 2) {if (n % i == 0) {while (n % i == 0)n /= i; number = (number / i * (i - 1));}} if (n > 1)number = (number / n * (n - 1)) ; return number;} //O(sqrt(N))
 /*--------------------------------------------------------------------------------------------------------------------------*/
 void solve(){
-    ll n,c=0;
-    cin>>n;
-    vector<ll>v(n);
-    for(int i=0;i<n;i++){
-        cin>>v[i];
+    ll n,k;
+    cin>>n>>k;
+    vector<int>occ[n+1],single,doublel,doubler;
+    for(int i=1;i<=2*n;i++){
+        ll x;
+        cin>>x;
+        occ[x].push_back(i);
     }
-    for(int i=1;i<n;i++){
-        if(v[i]>v[i-1]){
-            c++;
-        }
+
+    for(int i=1;i<=n;i++){
+        if(occ[i].back()<=n) doublel.push_back(i);
+        else if(occ[i].front()>n) doubler.push_back(i);
+        else single.push_back(i);
     }
-    ll p=(c)/2;
-    cout<<p<<endl;
-   
+    
+    vector<int>L,R;
+
+    for(int i=0;i<min({doublel.size(),doubler.size(),(size_t)k});i++){
+        L.push_back(doublel[i]);
+        L.push_back(doublel[i]);
+        R.push_back(doubler[i]);
+        R.push_back(doubler[i]);
+    }
+
+    for(int i=0;i<single.size();i++){
+        if(L.size()==2*k) break;
+        L.push_back(single[i]);
+        R.push_back(single[i]);
+    }
+
+    for(int i=0;i<2*k;i++) 
+    {
+        cout<<L[i]<<" ";
+    }
+    cout<<endl;
+    for(int i=0;i<2*k;i++) 
+    {
+        cout<<R[i]<<" ";
+    }
+    cout<<endl;
     
 }
 
