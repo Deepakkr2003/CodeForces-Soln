@@ -65,55 +65,28 @@ ll phin(ll n) {ll number = n; if (n % 2 == 0) {number /= 2; while (n % 2 == 0) n
 void solve(){
     ll n;
     cin>>n;
-    ll a[n];
-    fo(i,n){
-        cin>>a[i];
-    }
-    vector<ll>v1,v2;
-    v1.pb(a[0]);
-    int ans=0;
-    for(int i=1;i<n;i++){
-        if(v1.size()>0 && v2.size()>0){
-            if(a[i]<=v1.back() && a[i]<=v2.back()){
-                if(v1.back()<v2.back()){
-                    v1.pb(a[i]);
-                }
-                else{
-                    v2.pb(a[i]);
-                }
-            }
-            else if(a[i]<=v1.back()){
-                v1.pb(a[i]);
-            }
-            else if(a[i]<=v2.back()){
-                v2.pb(a[i]);
-            }
-            else{
-                if(v1.back()<v2.back()){
-                    v1.pb(a[i]);
-                }
-                else{
-                    v2.pb(a[i]);
-                }
-                ans++;
-            }
+    string s,p="";
+    cin>>s;
+    vector<char> v;
+
+    while(n!=0){
+        if(n%2==1){
+            v.push_back(s[0]);
+        }else{
+            v.insert(v.begin(),s[0]);
         }
-        else{
-            if(a[i]>v1.back()){
-                v2.pb(a[i]);
-            }
-            else{
-                v1.pb(a[i]);
-            }
-        }
+        s.erase(0,1);
+        n=s.length();
     }
-    cout<<ans<<endl;
+    for(int i=0;i<v.size();i++){
+        cout<<v[i];
+    }
     
 }
 
 int main() {
     int testcases = 1;
-    cin >> testcases;
+    // cin >> testcases;
     while(testcases--)
     {
         solve();

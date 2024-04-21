@@ -64,51 +64,27 @@ ll phin(ll n) {ll number = n; if (n % 2 == 0) {number /= 2; while (n % 2 == 0) n
 /*--------------------------------------------------------------------------------------------------------------------------*/
 void solve(){
     ll n;
-    cin>>n;
-    ll a[n];
-    fo(i,n){
-        cin>>a[i];
+    cin >> n;
+    vector<ll> a(n);
+    fo(i,n) cin >> a[i];
+    sort(all(a));
+    ll sum = 0;
+    ll ans = 0;
+    for(auto i:a){
+        sum+=i;
     }
-    vector<ll>v1,v2;
-    v1.pb(a[0]);
-    int ans=0;
-    for(int i=1;i<n;i++){
-        if(v1.size()>0 && v2.size()>0){
-            if(a[i]<=v1.back() && a[i]<=v2.back()){
-                if(v1.back()<v2.back()){
-                    v1.pb(a[i]);
-                }
-                else{
-                    v2.pb(a[i]);
-                }
-            }
-            else if(a[i]<=v1.back()){
-                v1.pb(a[i]);
-            }
-            else if(a[i]<=v2.back()){
-                v2.pb(a[i]);
-            }
-            else{
-                if(v1.back()<v2.back()){
-                    v1.pb(a[i]);
-                }
-                else{
-                    v2.pb(a[i]);
-                }
-                ans++;
-            }
-        }
-        else{
-            if(a[i]>v1.back()){
-                v2.pb(a[i]);
-            }
-            else{
-                v1.pb(a[i]);
-            }
-        }
+    if(sum%2){
+        ans++;
+    }
+    ans+=sum/2;
+    sum/=2;
+    ll j=n-1;
+    while(sum>0){
+        sum-=a[j];
+        ans++;
+        j--;
     }
     cout<<ans<<endl;
-    
 }
 
 int main() {

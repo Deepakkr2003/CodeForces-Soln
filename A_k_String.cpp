@@ -69,11 +69,18 @@ void solve(){
     cin>>str;
     vector<int> v (26,0);
     bool flag = true;
-    for(int i=0;i<str.size();i++) v[str[i]-'a']++;
+    for(int i=0;i<str.size();i++){
+        v[str[i]-'a']++;
+    } 
     for(int i=0;i<26;i++){
-        if(v[i]!=0 && v[i]%k!=0) {flag=false;break;}
+        if(v[i]!=0 && v[i]%k!=0) {
+            flag=false;
+            break;
+        }
     }
-    if(flag==false) cout<<-1;
+    if(flag==false){
+        cout<<-1;
+    } 
     else{
         string ans="";
         string tmp="";
@@ -81,11 +88,14 @@ void solve(){
             if(v[i]!=0){
                 char c = i + 'a';
                 int p= v[i]/k;
-                while(p--) tmp+=c;
- 
+                while(p--) {
+                    tmp+=c;
+                }
             }
         }
-        while(k--) ans+=tmp;
+        while(k--) {
+            ans+=tmp;
+        }
         cout<<ans;
     }
     cout<<endl;

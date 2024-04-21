@@ -66,28 +66,27 @@ void solve(){
     string s;
     cin>>s;
     ll n=s.size();
+    ll i=0;
+    ll curr=0;
+    ll b=0;
+    priority_queue<ll>pq;
     ll ans=0;
-    for(int i=0;i<n;i++){
-        if(s[i]=='A' && s[i+1]=='B'){
-            s[i]='B';
-            s[i+1]='C';
-            i++;
-            ans++;
+    while(i<n){
+        if(s[i]=='A') curr++;
+        else{
+            b++;
+            pq.push(curr);
+            curr=0;
+            if(i<n-1 && s[i+1]=='B') b++;
+            while(i<n && s[i]=='B')  i++;
+            i--;
         }
-        if(s[i]=='B' && s[i+1]=='A'){
-            if(s[i+2]=='A'){
-                i++;
-                ans++;
-
-            }
-            else{
-                s[i]='C';
-                s[i+1]='B';
-                i++;
-                ans++;
-            }
-            
-        } 
+        i++;
+    }
+    pq.push(curr);
+    while(!pq.empty() && b-- > 0){
+        ans+=pq.top();
+        pq.pop();
     }
     cout<<ans<<endl;
 }

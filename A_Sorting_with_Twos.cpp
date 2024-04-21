@@ -65,50 +65,24 @@ ll phin(ll n) {ll number = n; if (n % 2 == 0) {number /= 2; while (n % 2 == 0) n
 void solve(){
     ll n;
     cin>>n;
-    ll a[n];
+    vector<ll>v(n);
     fo(i,n){
-        cin>>a[i];
+        cin>>v[i];
     }
-    vector<ll>v1,v2;
-    v1.pb(a[0]);
-    int ans=0;
+    bool flag=true;
     for(int i=1;i<n;i++){
-        if(v1.size()>0 && v2.size()>0){
-            if(a[i]<=v1.back() && a[i]<=v2.back()){
-                if(v1.back()<v2.back()){
-                    v1.pb(a[i]);
-                }
-                else{
-                    v2.pb(a[i]);
-                }
-            }
-            else if(a[i]<=v1.back()){
-                v1.pb(a[i]);
-            }
-            else if(a[i]<=v2.back()){
-                v2.pb(a[i]);
-            }
-            else{
-                if(v1.back()<v2.back()){
-                    v1.pb(a[i]);
-                }
-                else{
-                    v2.pb(a[i]);
-                }
-                ans++;
-            }
-        }
-        else{
-            if(a[i]>v1.back()){
-                v2.pb(a[i]);
-            }
-            else{
-                v1.pb(a[i]);
+        if(v[i-1]>v[i]){
+            if(i!=1 && i!=2 && i!=4 && i!=8 && i!=16){
+                flag=false;
             }
         }
     }
-    cout<<ans<<endl;
-    
+    if(flag){
+        cout<<"YES"<<endl;
+    }
+    else{
+        cout<<"NO"<<endl;
+    }
 }
 
 int main() {

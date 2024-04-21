@@ -71,14 +71,13 @@ void solve(){
     }
 	sort(a.begin(),a.end());
 	int med = (n + 1) / 2;
-	// map<int,int> mp;
-	// fr(i, n) mp[a[i]]++;
+	
 	int ans = 0;
 	for(int i = med - 1; i < n; i++) {
 		ans += (a[i] == a[med - 1]);
 	}
  
-	// cout << mp[a[med]] << endl;
+	
 	cout << ans << endl;
 }
 

@@ -63,57 +63,33 @@ ll mod_div(ll a, ll b, ll m) {a = a % m; b = b % m; return (mod_mul(a, mminvprim
 ll phin(ll n) {ll number = n; if (n % 2 == 0) {number /= 2; while (n % 2 == 0) n /= 2;} for (ll i = 3; i <= sqrt(n); i += 2) {if (n % i == 0) {while (n % i == 0)n /= i; number = (number / i * (i - 1));}} if (n > 1)number = (number / n * (n - 1)) ; return number;} //O(sqrt(N))
 /*--------------------------------------------------------------------------------------------------------------------------*/
 void solve(){
-    ll n;
-    cin>>n;
-    ll a[n];
-    fo(i,n){
-        cin>>a[i];
-    }
-    vector<ll>v1,v2;
-    v1.pb(a[0]);
-    int ans=0;
-    for(int i=1;i<n;i++){
-        if(v1.size()>0 && v2.size()>0){
-            if(a[i]<=v1.back() && a[i]<=v2.back()){
-                if(v1.back()<v2.back()){
-                    v1.pb(a[i]);
-                }
-                else{
-                    v2.pb(a[i]);
-                }
-            }
-            else if(a[i]<=v1.back()){
-                v1.pb(a[i]);
-            }
-            else if(a[i]<=v2.back()){
-                v2.pb(a[i]);
-            }
+    int n;
+    cin >> n;
+    string s;
+    set<char> x, y;
+
+    for (int i = 0; i < n; i++)
+    {
+        cin >> s;
+        for (int j = 0; j < n; j++){
+            if (i == j || i + j == n - 1){
+                x.insert(s[j]);
+            }   
             else{
-                if(v1.back()<v2.back()){
-                    v1.pb(a[i]);
-                }
-                else{
-                    v2.pb(a[i]);
-                }
-                ans++;
-            }
-        }
-        else{
-            if(a[i]>v1.back()){
-                v2.pb(a[i]);
-            }
-            else{
-                v1.pb(a[i]);
+                y.insert(s[j]);
             }
         }
     }
-    cout<<ans<<endl;
-    
+
+    if (x.size() == 1 and y.size() == 1 and *x.begin() != *y.begin())
+        cout << "YES" << endl;
+    else
+        cout << "NO" << endl;
 }
 
 int main() {
     int testcases = 1;
-    cin >> testcases;
+    // cin >> testcases;
     while(testcases--)
     {
         solve();

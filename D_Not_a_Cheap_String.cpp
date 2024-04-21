@@ -64,10 +64,38 @@ ll phin(ll n) {ll number = n; if (n % 2 == 0) {number /= 2; while (n % 2 == 0) n
 /*--------------------------------------------------------------------------------------------------------------------------*/
 void solve(){
     
-    string s;
-    cin>>s;
+    string w;
+    cin>>w;
     ll n;
     cin>>n;
+    ll score=0;
+    map<ll,vector<ll>>mp;
+    for(int i=0;i<w.size();i++){
+        score+=w[i]-'a'+1;
+        mp[w[i]-'a'+1].pb(i);
+
+    }
+    while(score>n){
+        for(int i=26;i>=0;i--){
+            for(auto it:mp[i]){
+                score-=i;
+                w[it]='.';
+                if(score<=n){
+                    break;
+                }
+            }
+            if(score<=n){
+                break;
+            }
+        }
+    }
+    string ans="";
+    for(auto it:w){
+        if(it!='.'){
+            ans+=it;
+        }
+    }
+    cout<<ans<<endl;
     
 }
 

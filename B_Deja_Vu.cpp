@@ -63,52 +63,33 @@ ll mod_div(ll a, ll b, ll m) {a = a % m; b = b % m; return (mod_mul(a, mminvprim
 ll phin(ll n) {ll number = n; if (n % 2 == 0) {number /= 2; while (n % 2 == 0) n /= 2;} for (ll i = 3; i <= sqrt(n); i += 2) {if (n % i == 0) {while (n % i == 0)n /= i; number = (number / i * (i - 1));}} if (n > 1)number = (number / n * (n - 1)) ; return number;} //O(sqrt(N))
 /*--------------------------------------------------------------------------------------------------------------------------*/
 void solve(){
-    ll n;
-    cin>>n;
-    ll a[n];
+    ll n,q;
+    cin>>n>>q;
+    vector<ll>a(n),b(q),p;
     fo(i,n){
         cin>>a[i];
     }
-    vector<ll>v1,v2;
-    v1.pb(a[0]);
-    int ans=0;
-    for(int i=1;i<n;i++){
-        if(v1.size()>0 && v2.size()>0){
-            if(a[i]<=v1.back() && a[i]<=v2.back()){
-                if(v1.back()<v2.back()){
-                    v1.pb(a[i]);
-                }
-                else{
-                    v2.pb(a[i]);
-                }
-            }
-            else if(a[i]<=v1.back()){
-                v1.pb(a[i]);
-            }
-            else if(a[i]<=v2.back()){
-                v2.pb(a[i]);
-            }
-            else{
-                if(v1.back()<v2.back()){
-                    v1.pb(a[i]);
-                }
-                else{
-                    v2.pb(a[i]);
-                }
-                ans++;
-            }
-        }
-        else{
-            if(a[i]>v1.back()){
-                v2.pb(a[i]);
-            }
-            else{
-                v1.pb(a[i]);
+    fo(i,q){
+        cin>>b[i];
+    }
+    fo(i,q){
+        ll l=pow(2,b[i]);
+        p.push_back(l);
+    }
+    set<ll>hs;
+    for(int j=0;j<q;j++){
+        if(hs.count(b[j])) continue;
+        hs.insert(b[j]);
+        fo(i,n){
+            if(a[i]%p[j]==0){
+                a[i]+=p[j]/2;
             }
         }
     }
-    cout<<ans<<endl;
-    
+    for(auto i:a){
+        cout<<i<<" ";
+    }
+    cout<<endl;
 }
 
 int main() {
