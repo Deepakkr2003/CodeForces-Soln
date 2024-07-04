@@ -63,42 +63,45 @@ ll mod_div(ll a, ll b, ll m) {a = a % m; b = b % m; return (mod_mul(a, mminvprim
 ll phin(ll n) {ll number = n; if (n % 2 == 0) {number /= 2; while (n % 2 == 0) n /= 2;} for (ll i = 3; i <= sqrt(n); i += 2) {if (n % i == 0) {while (n % i == 0)n /= i; number = (number / i * (i - 1));}} if (n > 1)number = (number / n * (n - 1)) ; return number;} //O(sqrt(N))
 /*--------------------------------------------------------------------------------------------------------------------------*/
 void solve(){
-    int x;
-    cin >> x;
-    vector<int> ans;
-    string num = "";
-    while(x)
-    {
-        if(x & 1) num += '1';
-        else num += '0';
-//  cout<<x<<endl;
-        x = x >> 1;
+    ll n,p;
+    cin>>n>>p;
+    vector<ll>a(n),b(n);
+    for(int i=0;i<n;i++){
+        cin>>a[i];
+    }
+    for(int i=0;i<n;i++){
+        cin>>b[i];
+    }
+    vector<pair<ll,ll>>d;
+    for(int i=0;i<n;i++){
+        d.pb(make_pair(b[i],a[i]));
+    }
+    sort(all(d));
+    // for (int i=0; i<n; i++)
+    // {
         
-    }
-    // cout<<num<<endl;
-    int sz = num.size();
-    int i = 0;
-    while(i<sz)
-    {
-        int j = i;
-        while(j<sz && num[j] == '1'){
-            j++;
+    //     cout << d[i].first << " "
+    //          << d[i].second << endl;
+    // }
+    ll ans=p;
+    ll x=n-1;
+    ll j=0;
+    while(x){
+        if(d[j].first<=p ){
+            int c=min(x,d[j].second);
+            // cout<<c<<"."<<endl;
+            ans+=d[j].first*c;
+            x-=c;
+            
         }
-        if(j - i > 1){
-            for(int k=i ; k<j && k<sz ; k++)
-            {
-                num[k] = '0';
-            }
-            if(j == sz) num += '1';
-            else num[j] = '1';
-            num[i] = '7';
-            i = j;
+        else{
+            ans+=x*p;
+            break;
         }
-        else i++;
+        j++;
     }
-    cout << num.size() << nline;
-    for(int j=0 ;j<num.size() ; j++) if(num[j] == '7') cout << -1 << " "; else cout << num[j] << " ";
-    cout << nline;
+    cout<<ans <<endl;
+ 
 }
 
 int main() {

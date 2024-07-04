@@ -63,42 +63,21 @@ ll mod_div(ll a, ll b, ll m) {a = a % m; b = b % m; return (mod_mul(a, mminvprim
 ll phin(ll n) {ll number = n; if (n % 2 == 0) {number /= 2; while (n % 2 == 0) n /= 2;} for (ll i = 3; i <= sqrt(n); i += 2) {if (n % i == 0) {while (n % i == 0)n /= i; number = (number / i * (i - 1));}} if (n > 1)number = (number / n * (n - 1)) ; return number;} //O(sqrt(N))
 /*--------------------------------------------------------------------------------------------------------------------------*/
 void solve(){
-    int x;
-    cin >> x;
-    vector<int> ans;
-    string num = "";
-    while(x)
-    {
-        if(x & 1) num += '1';
-        else num += '0';
-//  cout<<x<<endl;
-        x = x >> 1;
-        
-    }
-    // cout<<num<<endl;
-    int sz = num.size();
-    int i = 0;
-    while(i<sz)
-    {
-        int j = i;
-        while(j<sz && num[j] == '1'){
-            j++;
-        }
-        if(j - i > 1){
-            for(int k=i ; k<j && k<sz ; k++)
-            {
-                num[k] = '0';
+    ll n,m;
+    cin>>n>>m;
+    for (long long i = 1; i <= n; i++) {
+        for (long long j = 1; j <= m; j++) {
+            if ((i % 4 <= 1) != (j % 4 <= 1)) {
+                cout << 1;
+            } else {
+                cout << 0;
             }
-            if(j == sz) num += '1';
-            else num[j] = '1';
-            num[i] = '7';
-            i = j;
+            if (j < m) {
+                cout << " ";
+            }
         }
-        else i++;
+        cout << endl;
     }
-    cout << num.size() << nline;
-    for(int j=0 ;j<num.size() ; j++) if(num[j] == '7') cout << -1 << " "; else cout << num[j] << " ";
-    cout << nline;
 }
 
 int main() {

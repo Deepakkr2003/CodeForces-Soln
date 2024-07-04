@@ -62,30 +62,42 @@ ll mod_div(ll a, ll b, ll m) {a = a % m; b = b % m; return (mod_mul(a, mminvprim
 ll phin(ll n) {ll number = n; if (n % 2 == 0) {number /= 2; while (n % 2 == 0) n /= 2;} for (ll i = 3; i <= sqrt(n); i += 2) {if (n % i == 0) {while (n % i == 0)n /= i; number = (number / i * (i - 1));}} if (n > 1)number = (number / n * (n - 1)) ; return number;} //O(sqrt(N))
 /*--------------------------------------------------------------------------------------------------------------------------*/
 void solve(){
-    int n;
-    cin >> n;
-    vector<ll> a(n+1,0),b(n),freq(n+1,0),res(n+1,0),preSum(n+1,0);
-    fo(i,n) cin >> a[i];
-    fo(i,n) cin >> b[i];
-    for(int i=0 ; i<n ; i++) preSum[i+1] = b[i] + preSum[i];
- 
-    fo(i,n)
-    {
-        ll elem = a[i] + preSum[i];
-        int ind = upper_bound(all(preSum),elem) - begin(preSum) - 1;
- 
-        freq[i] += 1;
-        freq[ind] -= 1;
- 
-        if(i>0) freq[i] += freq[i-1];
-        
-        res[ind] += a[i] - preSum[ind] + preSum[i];
+    ll n;
+    cin>>n;
+    vector<ll>a(n),b(n);
+    for(int i=0;i<n;i++){
+        cin>>a[i];
     }
-    fo(i,n){
-        res[i] += (freq[i] * b[i]);
-        cout << res[i] << " ";
+    for(int i=0;i<n;i++){
+        cin>>b[i];
     }
-    cout << nline;
+    vector<ll>pre(n);
+    pre[0]=b[0];
+    for(int i=1;i<n;i++){
+        pre[i]=pre[i-1]+b[i];
+    }
+    vector<ll>freq(n+1),rem(n+1);
+    for(int i=0;i<n;i++){
+        ll val=a[i];
+        if(i>0){
+            val+=pre[i-1];
+        }
+        ll ind=upper_bound(pre.begin(),pre.end(),val)-pre.begin();
+        freq[ind]++;
+        ll rm=val;
+        if(ind>0){
+            rm-=pre[ind-1];
+        }
+        rem[ind]+=rm;
+    }
+    for(int i=1;i<=n;i++){
+        freq[i]+=freq[i-1];
+    }
+    for(int i=0;i<n;i++){
+        ll x=(i+1-freq[i])*b[i]+rem[i];
+        cout<<x<<" ";
+    }
+    cout<<endl;
 }
  
 int main() {

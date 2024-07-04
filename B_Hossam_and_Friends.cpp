@@ -64,25 +64,22 @@ ll phin(ll n) {ll number = n; if (n % 2 == 0) {number /= 2; while (n % 2 == 0) n
 void solve(){
     int n,m;
     cin >> n >> m;
-    vector<int> vec(n+1,1e6);
-    fo(i,m)
-    {
-        int a,b;
-        cin >> a >> b;
-        vec[min(a,b)] = min(vec[min(a,b)],max(a,b));
-    }    
-    ll ans = 1;
-    int last = n + 1;
-    for(int i=n-1 ; i>= 1 ; i--)
-    {
-        if(vec[i] != 1e6){
-            last = min(last,vec[i]);
+    vector<ll> vec(n+1,0);
+    for(int i=0;i<m;i++){
+        ll x,y;
+        cin>>x>>y;
+        if(x>y){
+            swap(x,y);
         }
- 
-        ans += (ll)(last - i);
+        vec[y]=max(vec[y],x);
     }
- 
-    cout << ans << nline;
+    ll maxpos=0;
+    ll ans=0;
+    for(int i=1;i<=n;i++){
+        maxpos=max(maxpos,vec[i]);
+        ans+=i-maxpos;
+    }
+    cout<<ans<<endl;
 }
  
 int main() {
@@ -94,3 +91,12 @@ int main() {
     }
     return 0;
 }
+
+
+// Testcase 2: 
+// 1 2 3 4
+// 0 0 0 0 (vec)
+// 0 1 0 0 (vec for(1,2))
+// 0 1 2 0 (vec for(2,3))
+// maxpos=0 1 2 2
+// ans= 1 1 1 2(i-maxpos)1 base indexing

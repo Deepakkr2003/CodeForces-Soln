@@ -63,42 +63,58 @@ ll mod_div(ll a, ll b, ll m) {a = a % m; b = b % m; return (mod_mul(a, mminvprim
 ll phin(ll n) {ll number = n; if (n % 2 == 0) {number /= 2; while (n % 2 == 0) n /= 2;} for (ll i = 3; i <= sqrt(n); i += 2) {if (n % i == 0) {while (n % i == 0)n /= i; number = (number / i * (i - 1));}} if (n > 1)number = (number / n * (n - 1)) ; return number;} //O(sqrt(N))
 /*--------------------------------------------------------------------------------------------------------------------------*/
 void solve(){
-    int x;
-    cin >> x;
-    vector<int> ans;
-    string num = "";
-    while(x)
-    {
-        if(x & 1) num += '1';
-        else num += '0';
-//  cout<<x<<endl;
-        x = x >> 1;
-        
-    }
-    // cout<<num<<endl;
-    int sz = num.size();
-    int i = 0;
-    while(i<sz)
-    {
-        int j = i;
-        while(j<sz && num[j] == '1'){
-            j++;
+    int n,k;
+        cin>>n>>k;
+        int arr[n];
+        int flag=0,mini=INT_MAX;
+        for(int i=0;i<n;i++){
+            cin>>arr[i];
         }
-        if(j - i > 1){
-            for(int k=i ; k<j && k<sz ; k++)
-            {
-                num[k] = '0';
+        if(k!=4){
+            for(int i=0;i<n;i++){
+                mini=min(mini,k-arr[i]%k);
+                if(arr[i]%k==0){
+                    cout<<0<<endl;
+                    flag=1;
+                    break;
+                }
             }
-            if(j == sz) num += '1';
-            else num[j] = '1';
-            num[i] = '7';
-            i = j;
+            if(flag==1){
+                return;
+            }
+            cout<<mini<<endl;
         }
-        else i++;
-    }
-    cout << num.size() << nline;
-    for(int j=0 ;j<num.size() ; j++) if(num[j] == '7') cout << -1 << " "; else cout << num[j] << " ";
-    cout << nline;
+        else{
+            int cnt=0;
+            int flag2=0;
+            for(int i=0;i<n;i++){
+                if(arr[i]%k==0){
+                    flag=1;
+                    break;
+                }
+                if(arr[i]%2==0){
+                    cnt++;
+                    if(cnt==2){
+                        break;
+                    }
+                }
+                if(arr[i]==3 || arr[i]==7){
+                    flag2=1;
+                }
+            }
+            if(flag==1 || cnt==2){
+                cout<<0<<endl;
+            }
+            else if(flag2==1){
+                cout<<1<<endl;
+            }
+            else if(cnt==1){
+                cout<<1<<endl;
+            }
+            else{
+                cout<<2<<endl;
+            }
+        }
 }
 
 int main() {

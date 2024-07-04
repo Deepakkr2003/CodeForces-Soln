@@ -63,42 +63,39 @@ ll mod_div(ll a, ll b, ll m) {a = a % m; b = b % m; return (mod_mul(a, mminvprim
 ll phin(ll n) {ll number = n; if (n % 2 == 0) {number /= 2; while (n % 2 == 0) n /= 2;} for (ll i = 3; i <= sqrt(n); i += 2) {if (n % i == 0) {while (n % i == 0)n /= i; number = (number / i * (i - 1));}} if (n > 1)number = (number / n * (n - 1)) ; return number;} //O(sqrt(N))
 /*--------------------------------------------------------------------------------------------------------------------------*/
 void solve(){
-    int x;
-    cin >> x;
-    vector<int> ans;
-    string num = "";
-    while(x)
-    {
-        if(x & 1) num += '1';
-        else num += '0';
-//  cout<<x<<endl;
-        x = x >> 1;
-        
-    }
-    // cout<<num<<endl;
-    int sz = num.size();
-    int i = 0;
-    while(i<sz)
-    {
-        int j = i;
-        while(j<sz && num[j] == '1'){
-            j++;
+    int n;
+        cin>>n;
+        int arr[n];
+        map<int,int>mp;
+        for(int i=0;i<n;i++){
+              cin>>arr[i];
+              mp[arr[i]]++;
         }
-        if(j - i > 1){
-            for(int k=i ; k<j && k<sz ; k++)
-            {
-                num[k] = '0';
+        int flag=0;
+        int cnt=mp.size();
+        for(auto it=mp.begin();it!=mp.end();it++){
+            if(it->second<2){
+                flag=1;
+                break;
+                
             }
-            if(j == sz) num += '1';
-            else num[j] = '1';
-            num[i] = '7';
-            i = j;
         }
-        else i++;
-    }
-    cout << num.size() << nline;
-    for(int j=0 ;j<num.size() ; j++) if(num[j] == '7') cout << -1 << " "; else cout << num[j] << " ";
-    cout << nline;
+        if(flag==1){
+            cout<<-1<<endl;
+            return;
+        }
+        int idx=1;
+        for(int i=1;i<n;i++){
+            if(arr[i]==arr[i-1]){
+                cout<<i+1<<" ";
+            }
+            else{
+                cout<<idx<<" ";
+                idx=i+1;
+            }
+        }
+        cout<<idx<<" ";
+        cout<<endl;
 }
 
 int main() {
