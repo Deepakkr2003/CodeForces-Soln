@@ -62,23 +62,39 @@ ll mod_sub(ll a, ll b, ll m) {a = a % m; b = b % m; return (((a - b) % m) + m) %
 ll mod_div(ll a, ll b, ll m) {a = a % m; b = b % m; return (mod_mul(a, mminvprime(b, m), m) + m) % m;}  //only for prime m
 ll phin(ll n) {ll number = n; if (n % 2 == 0) {number /= 2; while (n % 2 == 0) n /= 2;} for (ll i = 3; i <= sqrt(n); i += 2) {if (n % i == 0) {while (n % i == 0)n /= i; number = (number / i * (i - 1));}} if (n > 1)number = (number / n * (n - 1)) ; return number;} //O(sqrt(N))
 /*--------------------------------------------------------------------------------------------------------------------------*/
-void solve(){
-    ll n,c=0;
-    cin>>n;
-    for(int i=2;i<=n;i++){
-        if(n%i==0){
-            c++;
+const int N = 1000000;
+ 
+int arr[N+1] = {0};
+ 
+void sieve()
+{
+    for(ll i=2 ; i*i <= N ; i++)
+    {
+        if(arr[i] == 1) continue;
+        for(ll j = i*i ; j <= N ; j += i)
+        {
+            arr[j] = 1;
         }
     }
-    if(c==2){
-        cout<<"YES"<<endl;
-    }
-    else{
-        cout<<"NO"<<endl;
-    }
 }
-
+ 
+void solve(){
+    ll n;
+    cin >> n;
+    if(n == 1)
+    {
+        cout << "NO" << nline;
+        return;
+    }
+    ll x = sqrt(n);
+    if(!arr[x] &&  x * x == n){
+        cout << "YES" << nline;
+    }   
+    else cout << "NO" << nline;
+}
+ 
 int main() {
+    sieve();
     int testcases = 1;
     cin >> testcases;
     while(testcases--)
